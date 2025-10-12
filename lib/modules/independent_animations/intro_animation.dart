@@ -31,6 +31,7 @@ class IntroAnimation extends StatelessWidget {
         numOfRects,
         (i) => Expanded(
           child: TweenAnimationBuilder<double>(
+            curve: Curves.easeInOut,
             tween: Tween(begin: 0, end: i.isEven ? end : -end),
             duration: duration,
             builder: (context, tween, child) {

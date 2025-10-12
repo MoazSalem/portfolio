@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/constants/theme.dart';
-import 'package:portfolio/modules/independent_animations/intro_animation.dart';
+import 'package:portfolio/modules/introduction/layout/introduction_module.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -11,12 +11,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Portfolio',
       theme: AppTheme.darkTheme,
-      home: Scaffold(
-        body: const IntroAnimation(
-          rectWidth: 200,
-          duration: Duration(milliseconds: 800),
-        ),
-      ),
+      home: Scaffold(body: IntroductionModule()),
     );
   }
 }
