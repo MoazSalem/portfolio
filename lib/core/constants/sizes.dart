@@ -1,11 +1,25 @@
 class AppSizes {
   static const double portraitBreakpoint = 900.0;
+  static const double smallDeviceBreakpoint = 600.0;
   static const double moduleMinWidth = 800.0;
   static const double moduleMinHeight = 800.0;
   static const double moduleMaxWidth = 1400.0;
-  static const double moduleVerticalPadding = 100.0;
+  static const double moduleInnerVerticalPadding = 100.0;
+  static const double moduleInnerHorizontalPadding = 32.0;
+  static const double padding8 = 8.0;
+  static const double padding10 = 10.0;
   static const double padding = 16.0;
+  static const double padding20 = 20.0;
+  static const double padding60 = 60.0;
   static const double introAnimationRectWidth = 180;
+  static const double userAvatarRadiusSmall = 120;
+  static const double userAvatarRadiusBig = 160;
+  static const double userDescriptionMaxWidthConstraint = 520;
+  static const int userDescriptionMaxLines = 5;
+  static const double numericalDescriptionWidgetMinWidth = 40;
+  static const double numericalDescriptionWidgetMaxWidth = 100;
+
+  static const double textHeight = 1.0;
   static const double font12 = 16;
   static const double font14 = 16;
   static const double font16 = 16;
@@ -16,4 +30,8 @@ class AppSizes {
   static const double font26 = 26;
   static const double font28 = 28;
   static const double font30 = 30;
+  static const double font40 = 40;
+  static const double font50 = 50;
+  static const double font60 = 60;
+  static const double font80 = 80;
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/constants/durations.dart';
 import 'package:portfolio/core/constants/sizes.dart';
+import 'package:portfolio/core/constants/user.dart';
 import 'package:portfolio/modules/independent_animations/intro_animation.dart';
 import 'package:portfolio/modules/introduction/layout/introduction_module.dart';
 
@@ -48,7 +49,15 @@ class _MainBodyState extends State<MainBody> {
             child: ColoredBox(
               color: Theme.of(context).colorScheme.surfaceContainer,
               // ListView to allow scrolling between modules, should be a builder variant later on
-              child: ListView(children: [IntroductionModule()]),
+              child: ListView(
+                children: [
+                  IntroductionModule(
+                    introductionData: user.introductionData,
+                    externalLinks: user.externalLinks,
+                    numericalDescriptions: user.numericalDescriptions,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
