@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/core/constants/durations.dart';
+import 'package:portfolio/core/constants/sizes.dart';
 import 'package:portfolio/modules/independent_animations/intro_animation.dart';
 import 'package:portfolio/modules/introduction/layout/introduction_module.dart';
 
@@ -13,7 +15,7 @@ class _MainBodyState extends State<MainBody> {
   // A state variable to control visibility
   bool _showAnimation = true;
 
-  static const _animationDuration = Duration(milliseconds: 800);
+  static const _animationDuration = AppDurations.introAnimationDuration;
 
   @override
   void initState() {
@@ -31,11 +33,30 @@ class _MainBodyState extends State<MainBody> {
 
   @override
   Widget build(BuildContext context) {
+    // This stack is used to position animations over modules
     return Stack(
+      alignment: AlignmentGeometry.center,
       children: [
-        IntroductionModule(),
+        Center(
+          // Center the modules sizes
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: AppSizes.moduleMaxWidth,
+              minWidth: AppSizes.moduleMinWidth,
+              minHeight: AppSizes.moduleMinHeight,
+            ),
+            child: ColoredBox(
+              color: Theme.of(context).colorScheme.surfaceContainer,
+              // ListView to allow scrolling between modules, should be a builder variant later on
+              child: ListView(children: [IntroductionModule()]),
+            ),
+          ),
+        ),
         if (_showAnimation) // to unmount the animations once it's done
-          IntroAnimation(rectWidth: 180, duration: _animationDuration),
+          IntroAnimation(
+            rectWidth: AppSizes.introAnimationRectWidth,
+            duration: _animationDuration,
+          ),
       ],
     );
   }
