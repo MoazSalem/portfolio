@@ -54,7 +54,6 @@ class _MainBodyState extends State<MainBody> {
                   IntroductionModule(
                     introductionData: user.introductionData,
                     externalLinks: user.externalLinks,
-                    numericalDescriptions: user.numericalDescriptions,
                   ),
                 ],
               ),

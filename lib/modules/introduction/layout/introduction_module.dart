@@ -7,12 +7,10 @@ import 'package:portfolio/modules/introduction/widgets/numerical_descriptions_wr
 class IntroductionModule extends StatelessWidget {
   final IntroductionData introductionData;
   final List<ExternalLink> externalLinks;
-  final List<NumericalDescription> numericalDescriptions;
   const IntroductionModule({
     super.key,
     required this.introductionData,
     required this.externalLinks,
-    required this.numericalDescriptions,
   });
 
   @override
@@ -47,7 +45,7 @@ class IntroductionModule extends StatelessWidget {
               SizedBox(height: AppSizes.padding60),
               // Numerical Descriptions under the info
               NumericalDescriptionsWrap(
-                numericalDescriptions: numericalDescriptions,
+                numericalDescriptions: introductionData.numericalDescriptions,
                 maxWidth: constraints.maxWidth,
                 isSmallDevice: isSmallDevice,
               ),

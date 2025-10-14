@@ -1,13 +1,8 @@
 class User {
   final IntroductionData introductionData;
   final List<ExternalLink> externalLinks;
-  final List<NumericalDescription> numericalDescriptions;
 
-  const User({
-    required this.introductionData,
-    required this.externalLinks,
-    required this.numericalDescriptions,
-  });
+  const User({required this.introductionData, required this.externalLinks});
 }
 
 class IntroductionData {
@@ -15,12 +10,14 @@ class IntroductionData {
   final String title;
   final String description;
   final String avatarUrl;
+  final List<NumericalDescription> numericalDescriptions;
 
   const IntroductionData({
     required this.name,
     required this.title,
     required this.description,
     required this.avatarUrl,
+    required this.numericalDescriptions,
   });
 }
 

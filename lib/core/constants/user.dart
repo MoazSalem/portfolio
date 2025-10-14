@@ -9,6 +9,12 @@ const User user = User(
         'Software Engineer with a passion for clean code, challenging UIs, and building adaptive & responsive cross-platform applications.',
     avatarUrl:
         'https://media.licdn.com/dms/image/v2/D4D03AQHw1dNS8d2J3Q/profile-displayphoto-crop_800_800/B4DZjB7Y6IGkAI-/0/1755600229242?e=1762992000&v=beta&t=3qkGjDfeih2y7ZKBWqh_sT4DBw7S3Q2VPuDLjkMFaUE',
+    numericalDescriptions: [
+      NumericalDescription(title: 'Age', value: 25),
+      NumericalDescription(title: 'Years of Experience', value: 3),
+      NumericalDescription(title: 'Projects', value: 10),
+      NumericalDescription(title: 'Clients', value: 5),
+    ],
   ),
   externalLinks: [
     ExternalLink(
@@ -26,11 +32,5 @@ const User user = User(
       iconAssetName: '',
       url: 'https://www.linkedin.com/in/moaztalaat/',
     ),
-  ],
-  numericalDescriptions: [
-    NumericalDescription(title: 'Age', value: 25),
-    NumericalDescription(title: 'Years of Experience', value: 3),
-    NumericalDescription(title: 'Projects', value: 10),
-    NumericalDescription(title: 'Clients', value: 5),
   ],
 );
