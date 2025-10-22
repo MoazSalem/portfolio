@@ -19,8 +19,8 @@ class NumericalDescriptionsWrap extends StatelessWidget {
     return SizedBox(
       width: maxWidth,
       child: Wrap(
-        spacing: AppSizes.p20,
-        runSpacing: AppSizes.p20,
+        spacing: AppSizes.p10,
+        runSpacing: AppSizes.p10,
         alignment: WrapAlignment.spaceEvenly,
         children: List.generate(
           numericalDescriptions.length,

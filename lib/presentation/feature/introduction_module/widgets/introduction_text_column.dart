@@ -63,7 +63,7 @@ class IntroductionTextColumn extends StatelessWidget {
             style: AppTypography.bodyLarge.copyWith(color: colorScheme.outline),
           ),
         ),
-        const SizedBox(height: AppSizes.p20),
+        const SizedBox(height: AppSizes.p40),
         // External links buttons
         ExternalLinksWrap(externalLinks: externalLinks),
       ],

@@ -13,8 +13,8 @@ class AppSizes {
   static const double userAvatarRadiusBig = 160;
   static const double userDescriptionMaxWidthConstraint = 520;
   static const int userDescriptionMaxLines = 5;
-  static const double numericalDescriptionWidgetMinWidth = 40;
-  static const double numericalDescriptionWidgetMaxWidth = 100;
+  static const double numericalDescriptionTextWidth = 100;
+  static const double numericalDescriptionNumberWidth = 80;
   static const double outlineWidth = 1;
   static const double circularRadius = 200;
   static const double iconSize = 20;
@@ -24,6 +24,7 @@ class AppSizes {
   static const double p10 = 10.0;
   static const double p16 = 16.0;
   static const double p20 = 20.0;
+  static const double p40 = 40.0;
   static const double p60 = 60.0;
 
   // text sizes

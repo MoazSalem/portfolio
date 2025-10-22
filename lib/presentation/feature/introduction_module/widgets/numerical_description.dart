@@ -22,6 +22,18 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<int> _animation;
+  bool _isAnimationDone = false;
+
+  // Define the listener function
+  void _onAnimationCompleted(AnimationStatus status) {
+    if (status == AnimationStatus.completed) {
+      setState(() {
+        _isAnimationDone = true;
+      });
+      // Remove the listener so this never fires again
+      _controller.removeStatusListener(_onAnimationCompleted);
+    }
+  }
 
   @override
   void initState() {
@@ -37,13 +49,7 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
       end: widget.numericalDescription.value,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutQuad));
     // Add a status listener to the controller.
-    _controller.addStatusListener((status) {
-      // Check if the animation has stopped at the beginning.
-      if (status == AnimationStatus.dismissed) {
-        // Dispose the controller.
-        _controller.dispose();
-      }
-    });
+    _controller.addStatusListener(_onAnimationCompleted);
     // delay the animation to start after 1 second
     Future.delayed(const Duration(seconds: 1), () {
       if (mounted) {
@@ -54,12 +60,9 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
 
   @override
   void dispose() {
-    // If the controller is still active when the widget is removed,
-    // we should still dispose it to prevent memory leaks.
-    if (_controller.isAnimating ||
-        _controller.status != AnimationStatus.dismissed) {
-      _controller.dispose();
-    }
+    // Just in case the widget is removed *before* the animation finishes
+    _controller.removeStatusListener(_onAnimationCompleted);
+    _controller.dispose();
     super.dispose();
   }
 
@@ -71,34 +74,46 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        ConstrainedBox(
-          constraints: const BoxConstraints(
-            minWidth: AppSizes.numericalDescriptionWidgetMinWidth,
-            maxWidth: AppSizes.numericalDescriptionWidgetMaxWidth,
-          ),
-          child: Text(
-            widget.numericalDescription.title,
-            style: AppTypography.labelLarge.copyWith(
-              color: Theme.of(context).colorScheme.outline,
+        Padding(
+          padding: const EdgeInsets.only(bottom: AppSizes.p8),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(
+              minWidth: AppSizes.numericalDescriptionNumberWidth,
+              maxWidth: AppSizes.numericalDescriptionNumberWidth,
             ),
+            child: _isAnimationDone
+                ? Text(
+                    "${widget.numericalDescription.value}",
+                    textAlign: TextAlign.center,
+                    style: AppTypography.headlineLarge.copyWith(
+                      fontSize: widget.numTextSize,
+                    ),
+                  )
+                : AnimatedBuilder(
+                    animation: _animation,
+                    builder: (context, child) {
+                      return Text(
+                        "${_animation.value}",
+                        textAlign: TextAlign.center,
+                        style: AppTypography.headlineLarge.copyWith(
+                          fontSize: widget.numTextSize,
+                        ),
+                      );
+                    },
+                  ),
           ),
         ),
         ConstrainedBox(
-          constraints: const BoxConstraints(minWidth: 80),
-          child: AnimatedBuilder(
-            animation: _animation,
-            builder: (context, child) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: AppSizes.p8),
-                child: Text(
-                  "${_animation.value}",
-                  textAlign: TextAlign.justify,
-                  style: AppTypography.headlineLarge.copyWith(
-                    fontSize: widget.numTextSize,
-                  ),
-                ),
-              );
-            },
+          constraints: const BoxConstraints(
+            minWidth: AppSizes.numericalDescriptionTextWidth,
+            maxWidth: AppSizes.numericalDescriptionTextWidth,
+          ),
+          child: Text(
+            widget.numericalDescription.title,
+            textAlign: TextAlign.start,
+            style: AppTypography.labelLarge.copyWith(
+              color: Theme.of(context).colorScheme.outline,
+            ),
           ),
         ),
       ],

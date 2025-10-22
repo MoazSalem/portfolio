@@ -22,18 +22,11 @@ class ExternalLinksWrap extends StatelessWidget {
         (i) => CircularBorderButton(
           onTap: () => web.window.open(externalLinks[i].url),
           child: i == 0
-              ? Row(
-                  mainAxisSize: MainAxisSize.min,
-                  spacing: AppSizes.p10,
-                  children: [
-                    const Text("View CV", style: AppTypography.labelLarge),
-                    SvgAsset(
-                      assetName: AppAssets.getSvgByName(
-                        externalLinks[i].name.toLowerCase(),
-                      ),
-                      color: colorScheme.primary,
-                    ),
-                  ],
+              ? Text(
+                  "View Resume",
+                  style: AppTypography.labelLarge.copyWith(
+                    color: colorScheme.primary,
+                  ),
                 )
               : SvgAsset(
                   assetName: AppAssets.getSvgByName(

@@ -16,7 +16,7 @@ class _MainBodyState extends State<MainBody> {
   // A state variable to control visibility
   bool _showAnimation = true;
 
-  static const _animationDuration = AppDurations.introAnimationDuration;
+  static const _animationDuration = AppDurations.defaultAnimationDuration;
 
   @override
   void initState() {

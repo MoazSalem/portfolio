@@ -42,7 +42,7 @@ class IntroductionModule extends StatelessWidget {
                 isSmallDevice: isSmallDevice,
                 isPortrait: isPortrait,
               ),
-              const SizedBox(height: AppSizes.p60),
+              const SizedBox(height: AppSizes.p40),
               // Numerical Descriptions under the info
               NumericalDescriptionsWrap(
                 numericalDescriptions: introductionData.numericalDescriptions,

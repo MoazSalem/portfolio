@@ -19,7 +19,9 @@ const User user = User(
   externalLinks: [
     ExternalLink(
       // name should be in small case, represents the name of the link. e.g. facebook, github, linkedin
-      name: 'cv',
+      // or just make sure the asset exists in the assets folder.
+      // also make sure the first one is the cv, or change the if condition in the external links wrap widget
+      name: 'resume',
       url:
           'https://drive.google.com/file/d/1viWJ5lCL-ovu1606cpyWby8WItkZ2yMK/view?usp=drive_link',
     ),
