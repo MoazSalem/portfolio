@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/domain/entities/user.dart';
 import 'package:portfolio/core/theme/durations.dart';
 import 'package:portfolio/core/theme/sizes.dart';
+import 'package:portfolio/core/theme/typography.dart';
+import 'package:portfolio/domain/entities/user.dart';
 
 class NumericalDescriptionWidget extends StatefulWidget {
   final NumericalDescription numericalDescription;
@@ -77,10 +78,7 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
           ),
           child: Text(
             widget.numericalDescription.title,
-            style: TextStyle(
-              height: AppSizes.textHeight,
-              fontSize: AppSizes.font16,
-              fontWeight: FontWeight.w600,
+            style: AppTypography.labelLarge.copyWith(
               color: Theme.of(context).colorScheme.outline,
             ),
           ),
@@ -95,10 +93,8 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
                 child: Text(
                   "${_animation.value}",
                   textAlign: TextAlign.justify,
-                  style: TextStyle(
-                    height: AppSizes.textHeight,
+                  style: AppTypography.headlineLarge.copyWith(
                     fontSize: widget.numTextSize,
-                    fontWeight: FontWeight.bold,
                   ),
                 ),
               );

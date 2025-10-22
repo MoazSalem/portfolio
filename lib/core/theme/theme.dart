@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/core/theme/typography.dart';
 
 class AppTheme {
   const AppTheme._();
@@ -11,5 +12,6 @@ class AppTheme {
       brightness: Brightness.dark,
     ),
     fontFamily: 'Barlow',
+    textTheme: AppTypography.darkTextTheme,
   );
 }

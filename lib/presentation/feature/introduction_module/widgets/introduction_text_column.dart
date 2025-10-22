@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/theme/sizes.dart';
+import 'package:portfolio/core/theme/typography.dart';
 import 'package:portfolio/domain/entities/user.dart';
 import 'package:portfolio/presentation/feature/introduction_module/widgets/external_links_wrap.dart';
 
@@ -20,7 +21,7 @@ class IntroductionTextColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: isPortrait
@@ -28,31 +29,20 @@ class IntroductionTextColumn extends StatelessWidget {
           : CrossAxisAlignment.start,
       children: [
         // User title
-        Text(
-          introductionData.title,
-          style: const TextStyle(
-            height: AppSizes.textHeight,
-            fontSize: AppSizes.font20,
-            fontWeight: FontWeight.w300,
-          ),
-        ),
+        Text(introductionData.title, style: AppTypography.headlineSmall),
         const SizedBox(height: AppSizes.p10),
         Text(
           'Hello I\'m',
-          style: TextStyle(
-            height: AppSizes.textHeight,
+          style: AppTypography.headlineLarge.copyWith(
             fontSize: isSmallDevice ? AppSizes.font50 : AppSizes.font80,
-            fontWeight: FontWeight.bold,
           ),
         ),
         // User name
         Text(
           introductionData.name,
-          style: TextStyle(
-            height: AppSizes.textHeight,
-            color: theme.colorScheme.primary,
+          style: AppTypography.headlineLarge.copyWith(
             fontSize: isSmallDevice ? AppSizes.font50 : AppSizes.font80,
-            fontWeight: FontWeight.bold,
+            color: colorScheme.primary,
           ),
         ),
         const SizedBox(height: AppSizes.p20),
@@ -70,11 +60,7 @@ class IntroductionTextColumn extends StatelessWidget {
             maxLines: AppSizes.userDescriptionMaxLines,
             overflow: TextOverflow.ellipsis,
             introductionData.description,
-            style: TextStyle(
-              color: theme.colorScheme.outline,
-              fontSize: AppSizes.font18,
-              fontWeight: FontWeight.w400,
-            ),
+            style: AppTypography.bodyLarge.copyWith(color: colorScheme.outline),
           ),
         ),
         const SizedBox(height: AppSizes.p20),
