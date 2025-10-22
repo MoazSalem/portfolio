@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/models/user.dart';
 import 'package:portfolio/core/theme/sizes.dart';
-import 'package:portfolio/modules/introduction/widgets/external_links_wrap.dart';
+import 'package:portfolio/domain/entities/user.dart';
+import 'package:portfolio/presentation/feature/introduction_module/widgets/external_links_wrap.dart';
 
 class IntroductionTextColumn extends StatelessWidget {
   final IntroductionData introductionData;

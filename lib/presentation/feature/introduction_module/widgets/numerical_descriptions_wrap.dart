@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/models/user.dart';
 import 'package:portfolio/core/theme/sizes.dart';
-import 'package:portfolio/modules/introduction/widgets/numerical_description.dart';
+import 'package:portfolio/domain/entities/user.dart';
+import 'package:portfolio/presentation/feature/introduction_module/widgets/numerical_description.dart';
 
 class NumericalDescriptionsWrap extends StatelessWidget {
   final List<NumericalDescription> numericalDescriptions;

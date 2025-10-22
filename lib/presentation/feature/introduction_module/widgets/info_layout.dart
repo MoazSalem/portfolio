@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/models/user.dart';
 import 'package:portfolio/core/theme/sizes.dart';
-import 'package:portfolio/modules/introduction/widgets/introduction_text_column.dart';
+import 'package:portfolio/domain/entities/user.dart';
+import 'package:portfolio/presentation/feature/introduction_module/widgets/introduction_text_column.dart';
 
 class InfoLayout extends StatelessWidget {
   final IntroductionData introductionData;

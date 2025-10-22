@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/models/user.dart';
+import 'package:portfolio/domain/entities/user.dart';
 import 'package:portfolio/core/theme/durations.dart';
 import 'package:portfolio/core/theme/sizes.dart';
 

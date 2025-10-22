@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/constants/user.dart';
 import 'package:portfolio/core/theme/durations.dart';
 import 'package:portfolio/core/theme/sizes.dart';
-import 'package:portfolio/modules/independent_animations/intro_animation.dart';
-import 'package:portfolio/modules/introduction/layout/introduction_module.dart';
+import 'package:portfolio/presentation/feature/independent_animations/intro_animation.dart';
+import 'package:portfolio/presentation/feature/introduction_module/module/introduction_module.dart';
 
 class MainBody extends StatefulWidget {
   const MainBody({super.key});

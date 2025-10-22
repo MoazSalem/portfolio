@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/models/user.dart';
 import 'package:portfolio/core/theme/sizes.dart';
-import 'package:portfolio/modules/introduction/widgets/info_layout.dart';
-import 'package:portfolio/modules/introduction/widgets/numerical_descriptions_wrap.dart';
+import 'package:portfolio/domain/entities/user.dart';
+import 'package:portfolio/presentation/feature/introduction_module/widgets/info_layout.dart';
+import 'package:portfolio/presentation/feature/introduction_module/widgets/numerical_descriptions_wrap.dart';
 
 class IntroductionModule extends StatelessWidget {
   final IntroductionData introductionData;
