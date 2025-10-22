@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/constants/durations.dart';
-import 'package:portfolio/core/constants/sizes.dart';
 import 'package:portfolio/core/constants/user.dart';
+import 'package:portfolio/core/theme/durations.dart';
+import 'package:portfolio/core/theme/sizes.dart';
 import 'package:portfolio/modules/independent_animations/intro_animation.dart';
 import 'package:portfolio/modules/introduction/layout/introduction_module.dart';
 
@@ -41,7 +41,7 @@ class _MainBodyState extends State<MainBody> {
         Center(
           // Center the modules sizes
           child: ConstrainedBox(
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               maxWidth: AppSizes.moduleMaxWidth,
               minWidth: AppSizes.moduleMinWidth,
               minHeight: AppSizes.moduleMinHeight,
@@ -61,7 +61,7 @@ class _MainBodyState extends State<MainBody> {
           ),
         ),
         if (_showAnimation) // to unmount the animations once it's done
-          IntroAnimation(
+          const IntroAnimation(
             rectWidth: AppSizes.introAnimationRectWidth,
             duration: _animationDuration,
           ),

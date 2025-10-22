@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/models/user.dart';
+import 'package:portfolio/core/shared_widgets/circular_border_button.dart';
+import 'package:portfolio/core/shared_widgets/svg_asset.dart';
+import 'package:portfolio/core/theme/sizes.dart';
+import 'package:portfolio/core/utils/assets.dart';
+import 'package:web/web.dart' as web show window;
 
 class ExternalLinksWrap extends StatelessWidget {
   final List<ExternalLink> externalLinks;
@@ -7,41 +12,37 @@ class ExternalLinksWrap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement external links
+    final colorScheme = Theme.of(context).colorScheme;
     return Wrap(
-      spacing: 10,
-      children: [
-        OutlinedButton(
-          style: OutlinedButton.styleFrom(
-            minimumSize: Size(140, 60),
-            maximumSize: Size(140, 60),
-          ),
-          onPressed: () {},
-          child: Row(
-            spacing: 10,
-            children: [
-              Text("VIEW CV", style: TextStyle(fontWeight: FontWeight.bold)),
-              Icon(Icons.find_in_page),
-            ],
-          ),
+      spacing: AppSizes.p10,
+      children: List.generate(
+        externalLinks.length,
+        (i) => CircularBorderButton(
+          onTap: () => web.window.open(externalLinks[i].url),
+          child: i == 0
+              ? Row(
+                  spacing: AppSizes.p10,
+                  children: [
+                    const Text(
+                      "VIEW CV",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    SvgAsset(
+                      assetName: AppAssets.getSvgByName(
+                        externalLinks[i].name.toLowerCase(),
+                      ),
+                      color: colorScheme.primary,
+                    ),
+                  ],
+                )
+              : SvgAsset(
+                  assetName: AppAssets.getSvgByName(
+                    externalLinks[i].name.toLowerCase(),
+                  ),
+                  color: colorScheme.primary,
+                ),
         ),
-        OutlinedButton(
-          style: OutlinedButton.styleFrom(
-            minimumSize: Size(60, 60),
-            maximumSize: Size(70, 60),
-          ),
-          onPressed: () {},
-          child: Row(spacing: 10, children: [Icon(Icons.android)]),
-        ),
-        OutlinedButton(
-          style: OutlinedButton.styleFrom(
-            minimumSize: Size(60, 60),
-            maximumSize: Size(70, 60),
-          ),
-          onPressed: () {},
-          child: Row(spacing: 10, children: [Icon(Icons.android)]),
-        ),
-      ],
+      ),
     );
   }
 }

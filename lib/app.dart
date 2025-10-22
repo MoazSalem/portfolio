@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/constants/theme.dart';
+import 'package:portfolio/core/theme/theme.dart';
 import 'package:portfolio/modules/main_body.dart';
 
 class App extends StatelessWidget {
@@ -11,7 +11,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Portfolio',
       theme: AppTheme.darkTheme,
-      home: Scaffold(body: MainBody()),
+      home: const Scaffold(body: MainBody()),
     );
   }
 }

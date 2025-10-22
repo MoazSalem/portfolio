@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/constants/sizes.dart';
 import 'package:portfolio/core/models/user.dart';
+import 'package:portfolio/core/theme/sizes.dart';
 import 'package:portfolio/modules/introduction/widgets/numerical_description.dart';
 
 class NumericalDescriptionsWrap extends StatelessWidget {
@@ -19,8 +19,8 @@ class NumericalDescriptionsWrap extends StatelessWidget {
     return SizedBox(
       width: maxWidth,
       child: Wrap(
-        spacing: AppSizes.padding20,
-        runSpacing: AppSizes.padding20,
+        spacing: AppSizes.p20,
+        runSpacing: AppSizes.p20,
         alignment: WrapAlignment.spaceEvenly,
         children: List.generate(
           numericalDescriptions.length,

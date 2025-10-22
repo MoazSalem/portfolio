@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/constants/sizes.dart';
 import 'package:portfolio/core/models/user.dart';
+import 'package:portfolio/core/theme/sizes.dart';
 import 'package:portfolio/modules/introduction/widgets/external_links_wrap.dart';
 
 class IntroductionTextColumn extends StatelessWidget {
@@ -30,13 +30,13 @@ class IntroductionTextColumn extends StatelessWidget {
         // User title
         Text(
           introductionData.title,
-          style: TextStyle(
+          style: const TextStyle(
             height: AppSizes.textHeight,
             fontSize: AppSizes.font20,
             fontWeight: FontWeight.w300,
           ),
         ),
-        SizedBox(height: AppSizes.padding10),
+        const SizedBox(height: AppSizes.p10),
         Text(
           'Hello I\'m',
           style: TextStyle(
@@ -55,7 +55,7 @@ class IntroductionTextColumn extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: AppSizes.padding20),
+        const SizedBox(height: AppSizes.p20),
         // User description
         ConstrainedBox(
           constraints: BoxConstraints(
@@ -77,7 +77,7 @@ class IntroductionTextColumn extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: AppSizes.padding20),
+        const SizedBox(height: AppSizes.p20),
         // External links buttons
         ExternalLinksWrap(externalLinks: externalLinks),
       ],

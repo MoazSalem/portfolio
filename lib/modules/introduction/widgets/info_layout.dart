@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/constants/sizes.dart';
 import 'package:portfolio/core/models/user.dart';
+import 'package:portfolio/core/theme/sizes.dart';
 import 'package:portfolio/modules/introduction/widgets/introduction_text_column.dart';
 
 class InfoLayout extends StatelessWidget {
@@ -22,7 +22,7 @@ class InfoLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flex(
       direction: isPortrait ? Axis.vertical : Axis.horizontal,
-      spacing: AppSizes.padding60,
+      spacing: AppSizes.p60,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [

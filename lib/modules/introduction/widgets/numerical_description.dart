@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/constants/durations.dart';
-import 'package:portfolio/core/constants/sizes.dart';
 import 'package:portfolio/core/models/user.dart';
+import 'package:portfolio/core/theme/durations.dart';
+import 'package:portfolio/core/theme/sizes.dart';
 
 class NumericalDescriptionWidget extends StatefulWidget {
   final NumericalDescription numericalDescription;
@@ -65,13 +65,13 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
   @override
   Widget build(BuildContext context) {
     return Row(
-      spacing: AppSizes.padding20,
+      spacing: AppSizes.p20,
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         ConstrainedBox(
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             minWidth: AppSizes.numericalDescriptionWidgetMinWidth,
             maxWidth: AppSizes.numericalDescriptionWidgetMaxWidth,
           ),
@@ -86,12 +86,12 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
           ),
         ),
         ConstrainedBox(
-          constraints: BoxConstraints(minWidth: 80),
+          constraints: const BoxConstraints(minWidth: 80),
           child: AnimatedBuilder(
             animation: _animation,
             builder: (context, child) {
               return Padding(
-                padding: const EdgeInsets.only(bottom: AppSizes.padding8),
+                padding: const EdgeInsets.only(bottom: AppSizes.p8),
                 child: Text(
                   "${_animation.value}",
                   textAlign: TextAlign.justify,

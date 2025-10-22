@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/constants/sizes.dart';
 import 'package:portfolio/core/models/user.dart';
+import 'package:portfolio/core/theme/sizes.dart';
 import 'package:portfolio/modules/introduction/widgets/info_layout.dart';
 import 'package:portfolio/modules/introduction/widgets/numerical_descriptions_wrap.dart';
 
@@ -42,7 +42,7 @@ class IntroductionModule extends StatelessWidget {
                 isSmallDevice: isSmallDevice,
                 isPortrait: isPortrait,
               ),
-              SizedBox(height: AppSizes.padding60),
+              const SizedBox(height: AppSizes.p60),
               // Numerical Descriptions under the info
               NumericalDescriptionsWrap(
                 numericalDescriptions: introductionData.numericalDescriptions,
