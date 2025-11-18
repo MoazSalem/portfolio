@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/theme/sizes.dart';
-import 'package:portfolio/core/theme/typography.dart';
 import 'package:portfolio/domain/entities/user.dart';
 import 'package:portfolio/presentation/feature/introduction_module/widgets/external_links_wrap.dart';
 
@@ -9,19 +8,17 @@ class IntroductionTextColumn extends StatelessWidget {
   final List<ExternalLink> externalLinks;
   final double maxWidth;
   final bool isPortrait;
-  final bool isSmallDevice;
   const IntroductionTextColumn({
     super.key,
     required this.maxWidth,
     required this.isPortrait,
-    required this.isSmallDevice,
     required this.introductionData,
     required this.externalLinks,
   });
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final theme = Theme.of(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: isPortrait
@@ -29,20 +26,14 @@ class IntroductionTextColumn extends StatelessWidget {
           : CrossAxisAlignment.start,
       children: [
         // User title
-        Text(introductionData.title, style: AppTypography.headlineSmall),
+        Text(introductionData.title, style: theme.textTheme.headlineSmall),
         const SizedBox(height: AppSizes.p10),
-        Text(
-          'Hello I\'m',
-          style: AppTypography.headlineLarge.copyWith(
-            fontSize: isSmallDevice ? AppSizes.font50 : AppSizes.font80,
-          ),
-        ),
+        Text('Hello I\'m', style: theme.textTheme.headlineLarge),
         // User name
         Text(
           introductionData.name,
-          style: AppTypography.headlineLarge.copyWith(
-            fontSize: isSmallDevice ? AppSizes.font50 : AppSizes.font80,
-            color: colorScheme.primary,
+          style: theme.textTheme.headlineLarge?.copyWith(
+            color: theme.colorScheme.primary,
           ),
         ),
         const SizedBox(height: AppSizes.p20),
@@ -60,7 +51,9 @@ class IntroductionTextColumn extends StatelessWidget {
             maxLines: AppSizes.userDescriptionMaxLines,
             overflow: TextOverflow.ellipsis,
             introductionData.description,
-            style: AppTypography.bodyLarge.copyWith(color: colorScheme.outline),
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.outline,
+            ),
           ),
         ),
         const SizedBox(height: AppSizes.p40),

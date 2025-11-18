@@ -5,12 +5,10 @@ import 'package:portfolio/presentation/feature/introduction_module/widgets/numer
 
 class NumericalDescriptionsWrap extends StatelessWidget {
   final List<NumericalDescription> numericalDescriptions;
-  final bool isSmallDevice;
   final double maxWidth;
   const NumericalDescriptionsWrap({
     super.key,
     required this.maxWidth,
-    this.isSmallDevice = false,
     required this.numericalDescriptions,
   });
 
@@ -26,7 +24,6 @@ class NumericalDescriptionsWrap extends StatelessWidget {
           numericalDescriptions.length,
           (index) => NumericalDescriptionWidget(
             numericalDescription: numericalDescriptions[index],
-            numTextSize: isSmallDevice ? AppSizes.font40 : AppSizes.font60,
           ),
         ),
       ),

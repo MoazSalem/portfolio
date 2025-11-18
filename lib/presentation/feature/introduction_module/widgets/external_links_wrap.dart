@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/theme/sizes.dart';
-import 'package:portfolio/core/theme/typography.dart';
 import 'package:portfolio/core/utils/assets.dart';
 import 'package:portfolio/domain/entities/user.dart';
 import 'package:portfolio/presentation/shared_widgets/circular_border_button.dart';
@@ -13,7 +12,7 @@ class ExternalLinksWrap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final theme = Theme.of(context);
     return Wrap(
       runSpacing: AppSizes.p10,
       spacing: AppSizes.p10,
@@ -24,15 +23,15 @@ class ExternalLinksWrap extends StatelessWidget {
           child: i == 0
               ? Text(
                   "View Resume",
-                  style: AppTypography.labelLarge.copyWith(
-                    color: colorScheme.primary,
+                  style: theme.textTheme.labelLarge?.copyWith(
+                    color: theme.colorScheme.primary,
                   ),
                 )
               : SvgAsset(
                   assetName: AppAssets.getSvgByName(
                     externalLinks[i].name.toLowerCase(),
                   ),
-                  color: colorScheme.primary,
+                  color: theme.colorScheme.primary,
                 ),
         ),
       ),

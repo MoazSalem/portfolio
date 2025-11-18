@@ -1,8 +1,6 @@
 class AppSizes {
   const AppSizes._();
   // widgets related sizes
-  static const double portraitBreakpoint = 900.0;
-  static const double smallDeviceBreakpoint = 600.0;
   static const double moduleMinWidth = 800.0;
   static const double moduleMinHeight = 800.0;
   static const double moduleMaxWidth = 1400.0;
@@ -18,6 +16,17 @@ class AppSizes {
   static const double outlineWidth = 1;
   static const double circularRadius = 200;
   static const double iconSize = 20;
+
+  // breakpoints and scaling factors
+  static const double portraitBreakpoint = 800.0;
+  static const double normalDeviceBreakpoint = 600.0;
+  static const double largeDeviceBreakpoint = 900.0;
+  static const double extraLargeDeviceBreakpoint = 1200.0;
+  static const double smallFontScaleFactor = 0.8;
+  static const double normalFontScaleFactor = 0.9;
+  static const double largeFontScaleFactor = 1.0;
+  static const double extraLargeFontScaleFactor = 1.1;
+
 
   // paddings
   static const double p8 = 8.0;
@@ -43,5 +52,5 @@ class AppSizes {
   static const double font40 = 40;
   static const double font50 = 50;
   static const double font60 = 60;
-  static const double font80 = 80;
+  static const double font70 = 70;
 }

@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/theme/durations.dart';
 import 'package:portfolio/core/theme/sizes.dart';
-import 'package:portfolio/core/theme/typography.dart';
 import 'package:portfolio/domain/entities/user.dart';
 
 class NumericalDescriptionWidget extends StatefulWidget {
   final NumericalDescription numericalDescription;
-  final double numTextSize;
   const NumericalDescriptionWidget({
     super.key,
     required this.numericalDescription,
-    required this.numTextSize,
   });
 
   @override
@@ -68,6 +65,7 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Row(
       spacing: AppSizes.p20,
       mainAxisSize: MainAxisSize.min,
@@ -85,9 +83,7 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
                 ? Text(
                     "${widget.numericalDescription.value}",
                     textAlign: TextAlign.center,
-                    style: AppTypography.headlineLarge.copyWith(
-                      fontSize: widget.numTextSize,
-                    ),
+                    style: textTheme.headlineMedium,
                   )
                 : AnimatedBuilder(
                     animation: _animation,
@@ -95,9 +91,7 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
                       return Text(
                         "${_animation.value}",
                         textAlign: TextAlign.center,
-                        style: AppTypography.headlineLarge.copyWith(
-                          fontSize: widget.numTextSize,
-                        ),
+                        style: textTheme.headlineMedium,
                       );
                     },
                   ),
@@ -111,7 +105,7 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
           child: Text(
             widget.numericalDescription.title,
             textAlign: TextAlign.start,
-            style: AppTypography.labelLarge.copyWith(
+            style: textTheme.labelLarge?.copyWith(
               color: Theme.of(context).colorScheme.outline,
             ),
           ),

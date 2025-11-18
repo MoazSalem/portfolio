@@ -8,15 +8,11 @@ class InfoLayout extends StatefulWidget {
   final IntroductionData introductionData;
   final List<ExternalLink> externalLinks;
   final double maxWidth;
-  final bool isSmallDevice;
-  final bool isPortrait;
   const InfoLayout({
     super.key,
     required this.maxWidth,
-    required this.isSmallDevice,
     required this.introductionData,
     required this.externalLinks,
-    required this.isPortrait,
   });
 
   @override
@@ -28,6 +24,8 @@ class _InfoLayoutState extends State<InfoLayout>
   late AnimationController _controller;
   late Animation<double> _animation;
   bool _isAnimationDone = false;
+  // bool to switch to vertical layout widgets
+  bool isPortrait = false;
 
   // Define the listener function
   void _onAnimationCompleted(AnimationStatus status) {
@@ -68,13 +66,20 @@ class _InfoLayoutState extends State<InfoLayout>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    isPortrait =
+        MediaQuery.of(context).size.width < AppSizes.portraitBreakpoint;
+  }
+
+  @override
   Widget build(BuildContext context) {
     // Build the list of widgets first to have the ability to reverse it.
     final List<Widget> widgets = [
       // User avatar
       if (_isAnimationDone)
         CircleAvatar(
-          radius: widget.isSmallDevice
+          radius: isPortrait
               ? AppSizes.userAvatarRadiusSmall
               : AppSizes.userAvatarRadiusBig,
           backgroundImage: NetworkImage(widget.introductionData.avatarUrl),
@@ -84,7 +89,7 @@ class _InfoLayoutState extends State<InfoLayout>
         AnimatedBuilder(
           animation: _animation,
           child: CircleAvatar(
-            radius: widget.isSmallDevice
+            radius: isPortrait
                 ? AppSizes.userAvatarRadiusSmall
                 : AppSizes.userAvatarRadiusBig,
             backgroundImage: NetworkImage(widget.introductionData.avatarUrl),
@@ -101,8 +106,7 @@ class _InfoLayoutState extends State<InfoLayout>
           introductionData: widget.introductionData,
           externalLinks: widget.externalLinks,
           maxWidth: widget.maxWidth,
-          isPortrait: widget.isPortrait,
-          isSmallDevice: widget.isSmallDevice,
+          isPortrait: isPortrait,
         ),
       // animation builder, will be removed after the animation is done
       if (!_isAnimationDone)
@@ -112,8 +116,7 @@ class _InfoLayoutState extends State<InfoLayout>
             introductionData: widget.introductionData,
             externalLinks: widget.externalLinks,
             maxWidth: widget.maxWidth,
-            isPortrait: widget.isPortrait,
-            isSmallDevice: widget.isSmallDevice,
+            isPortrait: isPortrait,
           ),
           builder: (context, child) {
             return Transform.translate(
@@ -124,11 +127,9 @@ class _InfoLayoutState extends State<InfoLayout>
         ),
     ];
     // for readability
-    final orderedWidgets = widget.isPortrait
-        ? widgets
-        : widgets.reversed.toList();
+    final orderedWidgets = isPortrait ? widgets : widgets.reversed.toList();
     return Flex(
-      direction: widget.isPortrait ? Axis.vertical : Axis.horizontal,
+      direction: isPortrait ? Axis.vertical : Axis.horizontal,
       spacing: AppSizes.p60,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.center,

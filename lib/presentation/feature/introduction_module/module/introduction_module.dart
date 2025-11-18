@@ -18,13 +18,6 @@ class IntroductionModule extends StatelessWidget {
     // use layout builder to get the current allowed constrains
     return LayoutBuilder(
       builder: (context, constraints) {
-        // bool to switch to vertical layout widgets
-        bool isPortrait =
-            constraints.maxWidth < constraints.maxHeight &&
-            constraints.maxWidth < AppSizes.portraitBreakpoint;
-        // bool to make the text smaller on small devices
-        bool isSmallDevice =
-            constraints.maxWidth < AppSizes.smallDeviceBreakpoint;
         // the inner paddings of the module
         return Padding(
           padding: const EdgeInsets.symmetric(
@@ -39,15 +32,12 @@ class IntroductionModule extends StatelessWidget {
                 introductionData: introductionData,
                 externalLinks: externalLinks,
                 maxWidth: constraints.maxWidth,
-                isSmallDevice: isSmallDevice,
-                isPortrait: isPortrait,
               ),
               const SizedBox(height: AppSizes.p40),
               // Numerical Descriptions under the info
               NumericalDescriptionsWrap(
                 numericalDescriptions: introductionData.numericalDescriptions,
                 maxWidth: constraints.maxWidth,
-                isSmallDevice: isSmallDevice,
               ),
             ],
           ),

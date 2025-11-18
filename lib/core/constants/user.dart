@@ -8,7 +8,7 @@ const User user = User(
     description:
         'Software Engineer with a passion for clean code, challenging UIs, and building adaptive & responsive cross-platform applications.',
     avatarUrl:
-        'https://media.licdn.com/dms/image/v2/D4D03AQHw1dNS8d2J3Q/profile-displayphoto-crop_800_800/B4DZjB7Y6IGkAI-/0/1755600229242?e=1762992000&v=beta&t=3qkGjDfeih2y7ZKBWqh_sT4DBw7S3Q2VPuDLjkMFaUE',
+        'https://avatars.githubusercontent.com/u/88838071?v=4',
     numericalDescriptions: [
       NumericalDescription(title: 'Age', value: 25),
       NumericalDescription(title: 'Years of Experience', value: 2),
