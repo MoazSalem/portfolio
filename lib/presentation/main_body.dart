@@ -49,13 +49,15 @@ class _MainBodyState extends State<MainBody> {
             child: ColoredBox(
               color: Theme.of(context).colorScheme.surfaceContainer,
               // ListView to allow scrolling between modules, should be a builder variant later on
-              child: ListView(
-                children: [
-                  IntroductionModule(
-                    introductionData: user.introductionData,
-                    externalLinks: user.externalLinks,
-                  ),
-                ],
+              child: SelectionArea(
+                child: ListView(
+                  children: [
+                    IntroductionModule(
+                      introductionData: user.introductionData,
+                      externalLinks: user.externalLinks,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
