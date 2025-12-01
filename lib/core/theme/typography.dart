@@ -46,25 +46,25 @@ class AppTypography {
   );
 
   static const TextStyle labelLarge = TextStyle(
-    fontSize: AppSizes.font16,
+    fontSize: AppSizes.font30,
     fontWeight: FontWeight.w600,
     color: _darkTextColor,
   );
 
   static const TextStyle labelMedium = TextStyle(
-    fontSize: AppSizes.font12,
+    fontSize: AppSizes.font24,
     fontWeight: FontWeight.w400,
     color: _darkTextColor,
   );
 
   static const TextStyle labelSmall = TextStyle(
-    fontSize: AppSizes.font10,
-    fontWeight: FontWeight.w400,
+    fontSize: AppSizes.font16,
+    fontWeight: FontWeight.w600,
     color: _darkTextColor,
   );
 
   static const TextStyle titleLarge = TextStyle(
-    fontSize: AppSizes.font16,
+    fontSize: AppSizes.font30,
     fontWeight: FontWeight.w700,
     color: _darkTextColor,
   );

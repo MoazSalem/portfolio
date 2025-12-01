@@ -23,7 +23,7 @@ class ExternalLinksWrap extends StatelessWidget {
           child: i == 0
               ? Text(
                   "View Resume",
-                  style: theme.textTheme.labelLarge?.copyWith(
+                  style: theme.textTheme.labelSmall?.copyWith(
                     color: theme.colorScheme.primary,
                   ),
                 )

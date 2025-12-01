@@ -7,8 +7,7 @@ const User user = User(
     title: 'Flutter Developer',
     description:
         'Software Engineer with a passion for clean code, challenging UIs, and building adaptive & responsive cross-platform applications.',
-    avatarUrl:
-        'https://avatars.githubusercontent.com/u/88838071?v=4',
+    avatarUrl: 'https://avatars.githubusercontent.com/u/88838071?v=4',
     numericalDescriptions: [
       NumericalDescription(title: 'Age', value: 25),
       NumericalDescription(title: 'Years of Experience', value: 2),
@@ -36,4 +35,19 @@ const User user = User(
       url: 'https://www.linkedin.com/in/moaztalaat/',
     ),
   ],
+  // Education Data
+  educationData: EducationData(
+    universityName: "Zagazig University, Faculty of Engineering",
+    degreeName: "Bachelor in Computer Systems Engineering",
+    startDate: "2018",
+    endDate: "2023",
+    // This is optional and can be null.
+    graduationProject: GraduationProject(
+      title: "Graduation Project: ADAS – Advanced Driver Assistance System",
+      description:
+          "BLE based multi-device communication and real-time car control via WebSockets",
+      score: "94/100",
+      link: "https://github.com/e7na/adas_app",
+    ),
+  ),
 );

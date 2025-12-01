@@ -105,7 +105,7 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
           child: Text(
             widget.numericalDescription.title,
             textAlign: TextAlign.start,
-            style: textTheme.labelLarge?.copyWith(
+            style: textTheme.labelSmall?.copyWith(
               color: Theme.of(context).colorScheme.outline,
             ),
           ),

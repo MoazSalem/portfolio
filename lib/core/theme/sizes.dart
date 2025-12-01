@@ -17,7 +17,7 @@ class AppSizes {
   static const double circularRadius = 200;
   static const double iconSize = 20;
   static const double defaultLinkHeight = 80;
-  static const double defaultLinkWidth = 20;
+  static const double defaultLinkWidth = 8;
 
   // breakpoints and scaling factors
   static const double portraitBreakpoint = 800.0;
