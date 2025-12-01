@@ -16,6 +16,8 @@ class AppSizes {
   static const double outlineWidth = 1;
   static const double circularRadius = 200;
   static const double iconSize = 20;
+  static const double defaultLinkHeight = 80;
+  static const double defaultLinkWidth = 20;
 
   // breakpoints and scaling factors
   static const double portraitBreakpoint = 800.0;
@@ -26,7 +28,6 @@ class AppSizes {
   static const double normalFontScaleFactor = 0.9;
   static const double largeFontScaleFactor = 1.0;
   static const double extraLargeFontScaleFactor = 1.1;
-
 
   // paddings
   static const double p8 = 8.0;

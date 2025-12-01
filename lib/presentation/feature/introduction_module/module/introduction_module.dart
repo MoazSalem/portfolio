@@ -16,33 +16,36 @@ class IntroductionModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // use layout builder to get the current allowed constrains
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        // the inner paddings of the module
-        return Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: AppSizes.moduleInnerVerticalPadding,
-            horizontal: AppSizes.moduleInnerHorizontalPadding,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // User Info with Avatar
-              InfoLayout(
-                introductionData: introductionData,
-                externalLinks: externalLinks,
-                maxWidth: constraints.maxWidth,
-              ),
-              const SizedBox(height: AppSizes.p40),
-              // Numerical Descriptions under the info
-              NumericalDescriptionsWrap(
-                numericalDescriptions: introductionData.numericalDescriptions,
-                maxWidth: constraints.maxWidth,
-              ),
-            ],
-          ),
-        );
-      },
+    return ColoredBox(
+      color: Theme.of(context).colorScheme.surfaceContainer,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          // the inner paddings of the module
+          return Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: AppSizes.moduleInnerVerticalPadding,
+              horizontal: AppSizes.moduleInnerHorizontalPadding,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // User Info with Avatar
+                InfoLayout(
+                  introductionData: introductionData,
+                  externalLinks: externalLinks,
+                  maxWidth: constraints.maxWidth,
+                ),
+                const SizedBox(height: AppSizes.p40),
+                // Numerical Descriptions under the info
+                NumericalDescriptionsWrap(
+                  numericalDescriptions: introductionData.numericalDescriptions,
+                  maxWidth: constraints.maxWidth,
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

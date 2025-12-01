@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/constants/user.dart';
 import 'package:portfolio/core/theme/durations.dart';
 import 'package:portfolio/core/theme/sizes.dart';
+import 'package:portfolio/presentation/feature/education_module/module/education_module.dart';
 import 'package:portfolio/presentation/feature/independent_animations/intro_animation.dart';
 import 'package:portfolio/presentation/feature/introduction_module/module/introduction_module.dart';
+import 'package:portfolio/presentation/shared_widgets/modules_link.dart';
 
 class MainBody extends StatefulWidget {
   const MainBody({super.key});
@@ -16,7 +18,7 @@ class _MainBodyState extends State<MainBody> {
   // A state variable to control visibility
   bool _showAnimation = true;
 
-  static const _animationDuration = AppDurations.defaultAnimationDuration;
+  static const _animationDuration = AppDurations.longAnimationDuration;
 
   @override
   void initState() {
@@ -38,29 +40,32 @@ class _MainBodyState extends State<MainBody> {
     return Stack(
       alignment: AlignmentGeometry.center,
       children: [
-        Center(
-          // Center the modules sizes
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              maxWidth: AppSizes.moduleMaxWidth,
-              minWidth: AppSizes.moduleMinWidth,
-              minHeight: AppSizes.moduleMinHeight,
-            ),
-            child: ColoredBox(
-              color: Theme.of(context).colorScheme.surfaceContainer,
-              // ListView to allow scrolling between modules, should be a builder variant later on
-              child: SelectionArea(
-                child: ListView(
-                  children: [
-                    IntroductionModule(
-                      introductionData: user.introductionData,
-                      externalLinks: user.externalLinks,
-                    ),
-                  ],
+        ListView(
+          children: [
+            // To make any text selectable.
+            SelectionArea(
+              child: Center(
+                // Center the modules sizes
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(
+                    maxWidth: AppSizes.moduleMaxWidth,
+                    minWidth: AppSizes.moduleMinWidth,
+                    minHeight: AppSizes.moduleMinHeight,
+                  ),
+                  child: Column(
+                    children: [
+                      IntroductionModule(
+                        introductionData: user.introductionData,
+                        externalLinks: user.externalLinks,
+                      ),
+                      const ModulesLink(),
+                      const EducationModule(),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
+          ],
         ),
         if (_showAnimation) // to unmount the animations once it's done
           const IntroAnimation(
