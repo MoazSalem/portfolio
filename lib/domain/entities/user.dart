@@ -2,11 +2,13 @@ class User {
   final IntroductionData introductionData;
   final List<ExternalLink> externalLinks;
   final EducationData educationData;
+  final List<Project> projects;
 
   const User({
     required this.introductionData,
     required this.externalLinks,
     required this.educationData,
+    required this.projects,
   });
 }
 
@@ -52,6 +54,22 @@ class GraduationProject {
     required this.description,
     required this.score,
     this.link,
+  });
+}
+
+class Project {
+  final String name;
+  final String? description;
+  final String? imgUrl;
+  final List<String>? tags;
+  final String? url;
+
+  const Project({
+    required this.name,
+    this.description,
+    this.imgUrl,
+    this.tags,
+    this.url,
   });
 }
 
