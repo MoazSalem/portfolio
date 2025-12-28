@@ -31,8 +31,9 @@ dependencies:
   flutter:
     sdk: flutter
   web: ^1.1.1
-  flutter_svg: ^2.2.1
+  flutter_svg: ^2.2.3
   vector_graphics: ^1.1.19
+  image_network: ^2.6.0
 
 dev_dependencies:
   flutter_test:

@@ -28,9 +28,13 @@ class EducationModule extends StatelessWidget {
               children: [
                 Text(
                   "Education",
-                  style: theme.textTheme.headlineMedium?.copyWith(height: 1),
+                  style: theme.textTheme.titleLarge?.copyWith(height: 1),
                 ),
-                Icon(Icons.school, color: theme.colorScheme.primary, size: 40),
+                Icon(
+                  Icons.school,
+                  color: theme.colorScheme.primary,
+                  size: AppSizes.iconSizeLarge,
+                ),
               ],
             ),
             const SizedBox(height: AppSizes.p20),

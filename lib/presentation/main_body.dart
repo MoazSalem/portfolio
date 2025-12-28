@@ -5,6 +5,7 @@ import 'package:portfolio/core/theme/sizes.dart';
 import 'package:portfolio/presentation/feature/education_module/module/education_module.dart';
 import 'package:portfolio/presentation/feature/independent_animations/intro_animation.dart';
 import 'package:portfolio/presentation/feature/introduction_module/module/introduction_module.dart';
+import 'package:portfolio/presentation/feature/projects_module/module/projects_module.dart';
 import 'package:portfolio/presentation/shared_widgets/modules_link.dart';
 
 class MainBody extends StatefulWidget {
@@ -61,6 +62,7 @@ class _MainBodyState extends State<MainBody> {
                       const ModulesLink(),
                       EducationModule(educationData: user.educationData),
                       const ModulesLink(),
+                      ProjectsModule(projects: user.projects),
                     ],
                   ),
                 ),

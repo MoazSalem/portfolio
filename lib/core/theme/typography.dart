@@ -64,14 +64,14 @@ class AppTypography {
   );
 
   static const TextStyle titleLarge = TextStyle(
-    fontSize: AppSizes.font30,
-    fontWeight: FontWeight.w700,
+    fontSize: AppSizes.font40,
+    fontWeight: FontWeight.w600,
     color: _darkTextColor,
   );
 
   static const TextStyle titleMedium = TextStyle(
-    fontSize: AppSizes.font14,
-    fontWeight: FontWeight.w500,
+    fontSize: AppSizes.font24,
+    fontWeight: FontWeight.w600,
     color: _darkTextColor,
   );
 
@@ -112,7 +112,7 @@ class AppTypography {
   );
 
   static const TextStyle displaySmall = TextStyle(
-    fontSize: AppSizes.font16,
+    fontSize: AppSizes.font12,
     fontWeight: FontWeight.w700,
     color: _darkTextColor,
   );

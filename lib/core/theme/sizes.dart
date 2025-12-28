@@ -14,10 +14,13 @@ class AppSizes {
   static const double numericalDescriptionTextWidth = 100;
   static const double numericalDescriptionNumberWidth = 80;
   static const double outlineWidth = 1;
+  static const double borderRadius = 30;
   static const double circularRadius = 200;
   static const double iconSize = 20;
-  static const double defaultLinkHeight = 80;
+  static const double iconSizeLarge = 30;
+  static const double defaultLinkHeight = 40;
   static const double defaultLinkWidth = 8;
+  static const double projectContainerMaxCrossAxisExtent = 600;
 
   // breakpoints and scaling factors
   static const double portraitBreakpoint = 800.0;
