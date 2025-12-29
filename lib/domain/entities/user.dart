@@ -3,12 +3,14 @@ class User {
   final List<ExternalLink> externalLinks;
   final EducationData educationData;
   final List<Project> projects;
+  final String? email;
 
   const User({
     required this.introductionData,
     required this.externalLinks,
     required this.educationData,
     required this.projects,
+    this.email,
   });
 }
 

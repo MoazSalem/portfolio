@@ -1,0 +1,123 @@
+import 'package:flutter/material.dart';
+import 'package:portfolio/core/theme/sizes.dart';
+import 'package:portfolio/core/utils/assets.dart';
+import 'package:portfolio/domain/entities/user.dart';
+import 'package:portfolio/presentation/shared_widgets/circular_border_button.dart';
+import 'package:portfolio/presentation/shared_widgets/svg_asset.dart';
+import 'package:web/web.dart' as web show window;
+
+class ContactModule extends StatelessWidget {
+  const ContactModule({super.key, this.email, this.externalLinks});
+  final String? email;
+  final List<ExternalLink>? externalLinks;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return ColoredBox(
+      color: theme.colorScheme.surfaceContainer,
+      child: Padding(
+        padding: const EdgeInsets.only(
+          top: AppSizes.moduleInnerVerticalPadding,
+          left: AppSizes.moduleInnerHorizontalPadding,
+          right: AppSizes.moduleInnerHorizontalPadding,
+          bottom: AppSizes.p40,
+        ),
+        child: Column(
+          children: [
+            RichText(
+              text: TextSpan(
+                text: "Let's ",
+                style: theme.textTheme.titleLarge?.copyWith(height: 1),
+                children: [
+                  TextSpan(
+                    text: "Connect",
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      color: theme.colorScheme.primary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: AppSizes.p40, width: double.infinity),
+            const Text(
+              "How did you reach here? What are you looking for? did you like any of my projects? I would love to hear from you over email!",
+            ),
+            const SizedBox(height: AppSizes.p40),
+            OutlinedButton(
+              onPressed: () {},
+              style: OutlinedButton.styleFrom(
+                side: BorderSide(
+                  color: theme.colorScheme.primary,
+                  width: AppSizes.outlineWidth,
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(AppSizes.p8),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.email,
+                      color: theme.colorScheme.primary,
+                      size: AppSizes.iconSize,
+                    ),
+
+                    const SizedBox(width: AppSizes.p10),
+                    Text(
+                      email ?? "Reach Out to Me",
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.primary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: AppSizes.p10),
+            if (externalLinks != null)
+              Wrap(
+                runSpacing: AppSizes.p10,
+                spacing: AppSizes.p10,
+                children: List.generate(
+                  externalLinks!.length - 1,
+                  (i) => CircularBorderButton(
+                    color: theme.colorScheme.primary,
+                    onTap: () => web.window.open(externalLinks![i].url),
+                    child: SvgAsset(
+                      assetName: AppAssets.getSvgByName(
+                        externalLinks![i].name.toLowerCase(),
+                      ),
+                      color: theme.colorScheme.primary,
+                    ),
+                  ),
+                ),
+              ),
+            const SizedBox(height: AppSizes.p40),
+            RichText(
+              text: TextSpan(
+                text: "Made With ",
+                style: theme.textTheme.labelSmall?.copyWith(height: 1),
+                children: [
+                  TextSpan(
+                    text: "Flutter",
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: theme.colorScheme.primary,
+                    ),
+                  ),
+                  const TextSpan(text: " By "),
+                  TextSpan(
+                    text: "MoazSalem",
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: theme.colorScheme.primary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

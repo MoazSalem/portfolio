@@ -142,4 +142,5 @@ const User user = User(
       ],
     ),
   ],
+  email: "moaztalaat6@gmail.com",
 );

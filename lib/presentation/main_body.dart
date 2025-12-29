@@ -8,6 +8,8 @@ import 'package:portfolio/presentation/feature/introduction_module/module/introd
 import 'package:portfolio/presentation/feature/projects_module/module/projects_module.dart';
 import 'package:portfolio/presentation/shared_widgets/modules_link.dart';
 
+import 'feature/contact_module/module/contact_module.dart';
+
 class MainBody extends StatefulWidget {
   const MainBody({super.key});
 
@@ -63,6 +65,11 @@ class _MainBodyState extends State<MainBody> {
                       EducationModule(educationData: user.educationData),
                       const ModulesLink(),
                       ProjectsModule(projects: user.projects),
+                      const ModulesLink(),
+                      ContactModule(
+                        email: user.email,
+                        externalLinks: user.externalLinks.reversed.toList(),
+                      ),
                     ],
                   ),
                 ),
