@@ -6,13 +6,23 @@ import 'package:portfolio/presentation/shared_widgets/circular_border_button.dar
 import 'package:portfolio/presentation/shared_widgets/svg_asset.dart';
 import 'package:web/web.dart' as web show window;
 
-class ContactModule extends StatelessWidget {
+class ContactModule extends StatefulWidget {
   const ContactModule({super.key, this.email, this.externalLinks});
   final String? email;
   final List<ExternalLink>? externalLinks;
 
   @override
+  State<ContactModule> createState() => _ContactModuleState();
+}
+
+class _ContactModuleState extends State<ContactModule>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     final theme = Theme.of(context);
     return ColoredBox(
       color: theme.colorScheme.surfaceContainer,
@@ -21,7 +31,7 @@ class ContactModule extends StatelessWidget {
           top: AppSizes.moduleInnerVerticalPadding,
           left: AppSizes.moduleInnerHorizontalPadding,
           right: AppSizes.moduleInnerHorizontalPadding,
-          bottom: AppSizes.p40,
+          bottom: AppSizes.p20,
         ),
         child: Column(
           children: [
@@ -45,7 +55,7 @@ class ContactModule extends StatelessWidget {
             ),
             const SizedBox(height: AppSizes.p40),
             OutlinedButton(
-              onPressed: () => web.window.open('mailto:$email'),
+              onPressed: () => web.window.open('mailto:${widget.email}'),
               style: OutlinedButton.styleFrom(
                 side: BorderSide(
                   color: theme.colorScheme.primary,
@@ -62,10 +72,9 @@ class ContactModule extends StatelessWidget {
                       color: theme.colorScheme.primary,
                       size: AppSizes.iconSize,
                     ),
-
                     const SizedBox(width: AppSizes.p10),
                     Text(
-                      email ?? "Reach Out to Me",
+                      widget.email ?? "Reach Out to Me",
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: theme.colorScheme.primary,
                       ),
@@ -74,19 +83,19 @@ class ContactModule extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: AppSizes.p10),
-            if (externalLinks != null)
+            const SizedBox(height: AppSizes.p20),
+            if (widget.externalLinks != null)
               Wrap(
                 runSpacing: AppSizes.p10,
                 spacing: AppSizes.p10,
                 children: List.generate(
-                  externalLinks!.length - 1,
+                  widget.externalLinks!.length - 1,
                   (i) => CircularBorderButton(
                     color: theme.colorScheme.primary,
-                    onTap: () => web.window.open(externalLinks![i].url),
+                    onTap: () => web.window.open(widget.externalLinks![i].url),
                     child: SvgAsset(
                       assetName: AppAssets.getSvgByName(
-                        externalLinks![i].name.toLowerCase(),
+                        widget.externalLinks![i].name.toLowerCase(),
                       ),
                       color: theme.colorScheme.primary,
                     ),

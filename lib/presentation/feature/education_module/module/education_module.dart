@@ -3,12 +3,22 @@ import 'package:portfolio/core/theme/sizes.dart';
 import 'package:portfolio/domain/entities/user.dart';
 import 'package:web/web.dart' as web show window;
 
-class EducationModule extends StatelessWidget {
+class EducationModule extends StatefulWidget {
   const EducationModule({super.key, required this.educationData});
   final EducationData educationData;
 
   @override
+  State<EducationModule> createState() => _EducationModuleState();
+}
+
+class _EducationModuleState extends State<EducationModule>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     final theme = Theme.of(context);
     return ColoredBox(
       color: theme.colorScheme.surfaceContainer,
@@ -53,26 +63,26 @@ class EducationModule extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      educationData.degreeName,
+                      widget.educationData.degreeName,
                       style: theme.textTheme.labelMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      educationData.universityName,
+                      widget.educationData.universityName,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: theme.colorScheme.primary,
                       ),
                     ),
                     Text(
-                      "${educationData.startDate} - ${educationData.endDate}",
+                      "${widget.educationData.startDate} - ${widget.educationData.endDate}",
                       style: const TextStyle(color: Colors.grey),
                     ),
                   ],
                 ),
               ),
             ),
-            if (educationData.graduationProject != null) ...[
+            if (widget.educationData.graduationProject != null) ...[
               Center(
                 child: Container(
                   height: 40,
@@ -89,8 +99,9 @@ class EducationModule extends StatelessWidget {
                   borderRadius: BorderRadius.circular(AppSizes.p20),
                 ),
                 child: InkWell(
-                  onTap: () =>
-                      web.window.open(educationData.graduationProject!.link!),
+                  onTap: () => web.window.open(
+                    widget.educationData.graduationProject!.link!,
+                  ),
                   borderRadius: BorderRadius.circular(AppSizes.p20),
                   child: Padding(
                     padding: const EdgeInsets.all(AppSizes.p20),
@@ -99,19 +110,19 @@ class EducationModule extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          educationData.graduationProject!.title,
+                          widget.educationData.graduationProject!.title,
                           style: theme.textTheme.labelMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
-                          educationData.graduationProject!.description,
+                          widget.educationData.graduationProject!.description,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: theme.colorScheme.outline,
                           ),
                         ),
                         Text(
-                          "(Score: ${educationData.graduationProject!.score})",
+                          "(Score: ${widget.educationData.graduationProject!.score})",
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: theme.colorScheme.primary,
                           ),

@@ -39,43 +39,126 @@ class _MainBodyState extends State<MainBody> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     // This stack is used to position animations over modules
     return Stack(
-      alignment: AlignmentGeometry.center,
+      alignment: Alignment.center,
       children: [
-        ListView(
-          children: [
-            // To make any text selectable.
-            SelectionArea(
-              child: Center(
-                // Center the modules sizes
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    maxWidth: AppSizes.moduleMaxWidth,
-                    minWidth: AppSizes.moduleMinWidth,
-                    minHeight: AppSizes.moduleMinHeight,
-                  ),
-                  child: Column(
-                    children: [
-                      IntroductionModule(
-                        introductionData: user.introductionData,
-                        externalLinks: user.externalLinks,
-                      ),
-                      const ModulesLink(),
-                      EducationModule(educationData: user.educationData),
-                      const ModulesLink(),
-                      ProjectsModule(projects: user.projects),
-                      const ModulesLink(),
-                      ContactModule(
-                        email: user.email,
-                        externalLinks: user.externalLinks.reversed.toList(),
-                      ),
-                    ],
+        SelectionArea(
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      maxWidth: AppSizes.moduleMaxWidth,
+                      minWidth: AppSizes.moduleMinWidth,
+                    ),
+                    child: IntroductionModule(
+                      introductionData: user.introductionData,
+                      externalLinks: user.externalLinks,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+              SliverToBoxAdapter(
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      maxWidth: AppSizes.moduleMaxWidth,
+                      minWidth: AppSizes.moduleMinWidth,
+                    ),
+                    child: const ModulesLink(),
+                  ),
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      maxWidth: AppSizes.moduleMaxWidth,
+                      minWidth: AppSizes.moduleMinWidth,
+                    ),
+                    child: EducationModule(educationData: user.educationData),
+                  ),
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      maxWidth: AppSizes.moduleMaxWidth,
+                      minWidth: AppSizes.moduleMinWidth,
+                    ),
+                    child: const ModulesLink(),
+                  ),
+                ),
+              ),
+              SliverLayoutBuilder(
+                builder: (context, constraints) {
+                  final double horizontalPadding =
+                      (constraints.crossAxisExtent - AppSizes.moduleMaxWidth) /
+                      2;
+                  final double effectivePadding = horizontalPadding > 0
+                      ? horizontalPadding
+                      : 0;
+
+                  return SliverPadding(
+                    padding: EdgeInsets.symmetric(horizontal: effectivePadding),
+                    sliver: DecoratedSliver(
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.surfaceContainer,
+                      ),
+                      sliver: SliverPadding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: AppSizes.moduleInnerVerticalPadding,
+                          horizontal: AppSizes.moduleInnerHorizontalPadding,
+                        ),
+                        sliver: SliverMainAxisGroup(
+                          slivers: [
+                            const SliverToBoxAdapter(
+                              child: Column(
+                                children: [
+                                  ProjectsHeader(),
+                                  SizedBox(height: AppSizes.p60),
+                                ],
+                              ),
+                            ),
+                            ProjectsSliverGrid(projects: user.projects),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+              SliverToBoxAdapter(
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      maxWidth: AppSizes.moduleMaxWidth,
+                      minWidth: AppSizes.moduleMinWidth,
+                    ),
+                    child: const ModulesLink(),
+                  ),
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      maxWidth: AppSizes.moduleMaxWidth,
+                      minWidth: AppSizes.moduleMinWidth,
+                    ),
+                    child: ContactModule(
+                      email: user.email,
+                      externalLinks: user.externalLinks.reversed.toList(),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
         if (_showAnimation) // to unmount the animations once it's done
           const IntroAnimation(

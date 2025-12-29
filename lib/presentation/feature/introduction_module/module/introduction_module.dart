@@ -4,7 +4,7 @@ import 'package:portfolio/domain/entities/user.dart';
 import 'package:portfolio/presentation/feature/introduction_module/widgets/info_layout.dart';
 import 'package:portfolio/presentation/feature/introduction_module/widgets/numerical_descriptions_wrap.dart';
 
-class IntroductionModule extends StatelessWidget {
+class IntroductionModule extends StatefulWidget {
   final IntroductionData introductionData;
   final List<ExternalLink> externalLinks;
   const IntroductionModule({
@@ -14,7 +14,17 @@ class IntroductionModule extends StatelessWidget {
   });
 
   @override
+  State<IntroductionModule> createState() => _IntroductionModuleState();
+}
+
+class _IntroductionModuleState extends State<IntroductionModule>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     // use layout builder to get the current allowed constrains
     return ColoredBox(
       color: Theme.of(context).colorScheme.surfaceContainer,
@@ -31,14 +41,15 @@ class IntroductionModule extends StatelessWidget {
               children: [
                 // User Info with Avatar
                 InfoLayout(
-                  introductionData: introductionData,
-                  externalLinks: externalLinks,
+                  introductionData: widget.introductionData,
+                  externalLinks: widget.externalLinks,
                   maxWidth: constraints.maxWidth,
                 ),
                 const SizedBox(height: AppSizes.p40),
                 // Numerical Descriptions under the info
                 NumericalDescriptionsWrap(
-                  numericalDescriptions: introductionData.numericalDescriptions,
+                  numericalDescriptions:
+                      widget.introductionData.numericalDescriptions,
                   maxWidth: constraints.maxWidth,
                 ),
               ],
