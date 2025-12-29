@@ -60,14 +60,16 @@ class GraduationProject {
 class Project {
   final String name;
   final String? description;
-  final String? imgUrl;
+  final List<String>? imgsUrl;
+  final List<String>? assetsLocation;
   final List<String>? tags;
   final String? url;
 
   const Project({
     required this.name,
     this.description,
-    this.imgUrl,
+    this.imgsUrl,
+    this.assetsLocation,
     this.tags,
     this.url,
   });

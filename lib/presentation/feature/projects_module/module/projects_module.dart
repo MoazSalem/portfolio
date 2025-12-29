@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:image_network/image_network.dart';
 import 'package:portfolio/core/theme/sizes.dart';
 import 'package:portfolio/domain/entities/user.dart';
 
@@ -59,16 +58,29 @@ class ProjectsModule extends StatelessWidget {
                       child: Stack(
                         alignment: Alignment.bottomLeft,
                         children: [
-                          if (project.imgUrl != null)
+                          if (project.imgsUrl != null)
                             ClipRRect(
                               borderRadius: BorderRadius.circular(
                                 AppSizes.borderRadius,
                               ),
-                              child: ImageNetwork(
-                                image: project.imgUrl ?? '',
-                                width: 500,
-                                height: 600,
-                                fitWeb: BoxFitWeb.cover,
+                              child: Image.network(
+                                project.imgsUrl![0],
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          if (project.assetsLocation != null)
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(
+                                AppSizes.borderRadius,
+                              ),
+                              child: Center(
+                                child: Image(
+                                  alignment: Alignment.topCenter,
+                                  width: AppSizes
+                                      .projectContainerMaxCrossAxisExtent,
+                                  fit: BoxFit.cover,
+                                  image: AssetImage(project.assetsLocation![0]),
+                                ),
                               ),
                             ),
                           Container(
