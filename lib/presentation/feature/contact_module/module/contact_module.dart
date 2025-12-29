@@ -45,7 +45,7 @@ class ContactModule extends StatelessWidget {
             ),
             const SizedBox(height: AppSizes.p40),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () => web.window.open('mailto:$email'),
               style: OutlinedButton.styleFrom(
                 side: BorderSide(
                   color: theme.colorScheme.primary,
