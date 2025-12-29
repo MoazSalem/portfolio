@@ -33,6 +33,7 @@ dependencies:
   web: ^1.1.1
   flutter_svg: ^2.2.3
   vector_graphics: ^1.1.19
+  motor: ^1.1.0
 
 dev_dependencies:
   flutter_test:

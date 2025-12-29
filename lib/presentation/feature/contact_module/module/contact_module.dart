@@ -31,7 +31,7 @@ class _ContactModuleState extends State<ContactModule>
           top: AppSizes.moduleInnerVerticalPadding,
           left: AppSizes.moduleInnerHorizontalPadding,
           right: AppSizes.moduleInnerHorizontalPadding,
-          bottom: AppSizes.p20,
+          bottom: AppSizes.p40,
         ),
         child: Column(
           children: [
@@ -54,33 +54,24 @@ class _ContactModuleState extends State<ContactModule>
               "How did you reach here? What are you looking for? did you like any of my projects? I would love to hear from you over email!",
             ),
             const SizedBox(height: AppSizes.p40),
-            OutlinedButton(
-              onPressed: () => web.window.open('mailto:${widget.email}'),
-              style: OutlinedButton.styleFrom(
-                side: BorderSide(
-                  color: theme.colorScheme.primary,
-                  width: AppSizes.outlineWidth,
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(AppSizes.p8),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.email,
+            CircularBorderButton(
+              onTap: () => web.window.open('mailto:${widget.email}'),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.email,
+                    color: theme.colorScheme.primary,
+                    size: AppSizes.iconSize,
+                  ),
+                  const SizedBox(width: AppSizes.p10),
+                  Text(
+                    widget.email ?? "Reach Out to Me",
+                    style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.primary,
-                      size: AppSizes.iconSize,
                     ),
-                    const SizedBox(width: AppSizes.p10),
-                    Text(
-                      widget.email ?? "Reach Out to Me",
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.primary,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: AppSizes.p20),
@@ -91,7 +82,6 @@ class _ContactModuleState extends State<ContactModule>
                 children: List.generate(
                   widget.externalLinks!.length - 1,
                   (i) => CircularBorderButton(
-                    color: theme.colorScheme.primary,
                     onTap: () => web.window.open(widget.externalLinks![i].url),
                     child: SvgAsset(
                       assetName: AppAssets.getSvgByName(
