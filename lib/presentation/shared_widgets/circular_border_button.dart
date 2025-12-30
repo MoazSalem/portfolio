@@ -44,33 +44,23 @@ class _CircularBorderButtonState extends State<CircularBorderButton> {
           return SingleMotionBuilder(
             motion: const CupertinoMotion.smooth(),
             builder: (context, value, child) {
-              return Listener(
-                onPointerDown: (event) {
-                  statesController.update(WidgetState.pressed, true);
+              return InkWell(
+                onTapUp: (details) =>
+                    statesController.update(WidgetState.pressed, false),
+                onTapDown: (details) =>
+                    statesController.update(WidgetState.pressed, true),
+                onTap: widget.onTap,
+                onHover: (hover) {
+                  statesController.update(WidgetState.hovered, hover);
                 },
-                onPointerUp: (event) {
-                  statesController.update(WidgetState.pressed, false);
-                },
-                child: MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  onEnter: (event) {
-                    statesController.update(WidgetState.hovered, true);
-                  },
-                  onExit: (event) {
-                    statesController.update(WidgetState.hovered, false);
-                  },
-                  child: InkWell(
-                    onTap: widget.onTap,
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(AppSizes.circularRadius),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(
-                        value * (widget.paddingValue ?? AppSizes.p16),
-                      ),
-                      child: widget.child,
-                    ),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(AppSizes.circularRadius),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(
+                    value * (widget.paddingValue ?? AppSizes.p16),
                   ),
+                  child: widget.child,
                 ),
               );
             },

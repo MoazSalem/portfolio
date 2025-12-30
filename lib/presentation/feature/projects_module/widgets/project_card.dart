@@ -1,0 +1,160 @@
+import 'package:flutter/material.dart';
+import 'package:motor/motor.dart';
+import 'package:portfolio/core/theme/sizes.dart';
+import 'package:portfolio/domain/entities/user.dart';
+import 'package:portfolio/presentation/shared_widgets/circular_border_button.dart';
+import 'package:web/web.dart' as web show window;
+
+class ProjectCard extends StatefulWidget {
+  const ProjectCard({super.key, required this.project});
+
+  final Project project;
+
+  @override
+  State<ProjectCard> createState() => _ProjectCardState();
+}
+
+class _ProjectCardState extends State<ProjectCard> {
+  final statesController = WidgetStatesController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    statesController.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return ValueListenableBuilder(
+      valueListenable: statesController,
+      builder: (context, _, child) {
+        // set the color based on the hover state
+        final Color color = statesController.value.contains(WidgetState.hovered)
+            ? theme.colorScheme.primaryContainer
+            : Colors.black;
+        return SingleMotionBuilder(
+          motion: const CupertinoMotion.smooth(),
+          builder: (context, value, child) {
+            return Padding(
+              padding: EdgeInsets.all(value),
+              child: InkWell(
+                onTap: () => web.window.open(widget.project.url ?? ''),
+                onTapUp: (details) =>
+                    statesController.update(WidgetState.pressed, false),
+                onTapDown: (details) =>
+                    statesController.update(WidgetState.pressed, true),
+                onHover: (hover) {
+                  statesController.update(WidgetState.hovered, hover);
+                },
+                borderRadius: BorderRadius.circular(AppSizes.borderRadius),
+                child: Material(
+                  color: theme.colorScheme.surface,
+                  borderRadius: BorderRadius.circular(AppSizes.borderRadius),
+                  child: Stack(
+                    alignment: Alignment.bottomLeft,
+                    children: [
+                      if (widget.project.imgsUrl != null)
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(
+                            AppSizes.borderRadius,
+                          ),
+                          child: Image.network(
+                            widget.project.imgsUrl![0],
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      if (widget.project.assetsLocation != null &&
+                          widget.project.imgsUrl == null)
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(
+                            AppSizes.borderRadius,
+                          ),
+                          child: Center(
+                            child: Image(
+                              alignment: Alignment.topCenter,
+                              width:
+                                  AppSizes.projectContainerMaxCrossAxisExtent,
+                              height:
+                                  AppSizes.projectContainerMaxCrossAxisExtent,
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                widget.project.assetsLocation![0],
+                              ),
+                            ),
+                          ),
+                        ),
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        alignment: Alignment.bottomLeft,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(AppSizes.borderRadius - 2),
+                          ),
+                          gradient: LinearGradient(
+                            colors: [
+                              color.withAlpha(255),
+                              color.withAlpha(200),
+                              color.withAlpha(120),
+                              color.withAlpha(0),
+                            ],
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(AppSizes.p16),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.project.name,
+                              style: theme.textTheme.titleMedium,
+                            ),
+                            Text(
+                              widget.project.description ?? '',
+                              style: theme.textTheme.labelSmall,
+                              maxLines: 5,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            const SizedBox(height: AppSizes.p16),
+                            if (widget.project.tags != null)
+                              Wrap(
+                                spacing: AppSizes.p8,
+                                runSpacing: AppSizes.p8,
+                                children: List.generate(
+                                  widget.project.tags!.length,
+                                  (i) => CircularBorderButton(
+                                    paddingValue: AppSizes.p8,
+                                    color: theme.colorScheme.primary,
+                                    child: Text(
+                                      widget.project.tags![i],
+                                      style: theme.textTheme.displaySmall
+                                          ?.copyWith(
+                                            color: theme.colorScheme.primary,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+          value: switch (statesController.value) {
+            final v when v.contains(WidgetState.pressed) => AppSizes.p4,
+            final v when v.contains(WidgetState.hovered) => AppSizes.p2,
+            _ => AppSizes.p8,
+          },
+        );
+      },
+    );
+  }
+}

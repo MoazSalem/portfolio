@@ -33,6 +33,8 @@ class AppSizes {
   static const double extraLargeFontScaleFactor = 1.1;
 
   // paddings
+  static const double p2 = 2.0;
+  static const double p4 = 4.0;
   static const double p8 = 8.0;
   static const double p10 = 10.0;
   static const double p16 = 16.0;
