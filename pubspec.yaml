@@ -62,10 +62,7 @@ flutter:
   assets:
     - assets/fonts/
     - assets/images/svgs/
-    - assets/images/previews/pills/
-    - assets/images/previews/otex/
-    - assets/images/previews/sorter/
-    - assets/images/previews/colorful/
+    - assets/images/previews/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

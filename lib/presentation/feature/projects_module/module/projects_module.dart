@@ -71,6 +71,7 @@ class ProjectsSliverGrid extends StatelessWidget {
                         child: Image(
                           alignment: Alignment.topCenter,
                           width: AppSizes.projectContainerMaxCrossAxisExtent,
+                          height: AppSizes.projectContainerMaxCrossAxisExtent,
                           fit: BoxFit.cover,
                           image: AssetImage(project.assetsLocation![0]),
                         ),

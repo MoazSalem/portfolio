@@ -66,6 +66,9 @@ class Project {
   final List<String>? assetsLocation;
   final List<String>? tags;
   final String? url;
+  final String? playStoreUrl;
+  final String? appStoreUrl;
+  final String? demoUrl;
 
   const Project({
     required this.name,
@@ -74,6 +77,9 @@ class Project {
     this.assetsLocation,
     this.tags,
     this.url,
+    this.playStoreUrl,
+    this.appStoreUrl,
+    this.demoUrl,
   });
 }
 
