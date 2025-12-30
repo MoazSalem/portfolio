@@ -24,6 +24,7 @@ class NumericalDescriptionsWrap extends StatelessWidget {
           numericalDescriptions.length,
           (index) => NumericalDescriptionWidget(
             numericalDescription: numericalDescriptions[index],
+            index: index,
           ),
         ),
       ),

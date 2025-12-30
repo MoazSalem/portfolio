@@ -5,9 +5,11 @@ import 'package:portfolio/domain/entities/user.dart';
 
 class NumericalDescriptionWidget extends StatefulWidget {
   final NumericalDescription numericalDescription;
+  final int index;
   const NumericalDescriptionWidget({
     super.key,
     required this.numericalDescription,
+    required this.index,
   });
 
   @override
@@ -48,7 +50,7 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
     // Add a status listener to the controller.
     _controller.addStatusListener(_onAnimationCompleted);
     // delay the animation to start after 1 second
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(Duration(milliseconds: 1000 + widget.index * 250), () {
       if (mounted) {
         _controller.forward();
       }
