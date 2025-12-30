@@ -65,10 +65,8 @@ class Project {
   final List<String>? imgsUrl;
   final List<String>? assetsLocation;
   final List<String>? tags;
-  final String? url;
-  final String? playStoreUrl;
-  final String? appStoreUrl;
-  final String? demoUrl;
+  final String? clickUrl;
+  final List<ExternalLink>? externalLinks;
 
   const Project({
     required this.name,
@@ -76,10 +74,8 @@ class Project {
     this.imgsUrl,
     this.assetsLocation,
     this.tags,
-    this.url,
-    this.playStoreUrl,
-    this.appStoreUrl,
-    this.demoUrl,
+    this.clickUrl,
+    this.externalLinks,
   });
 }
 
@@ -91,10 +87,12 @@ class NumericalDescription {
 
 class ExternalLink {
   final String name;
+  final String? displayName;
   final String? iconAssetName;
   final String url;
   const ExternalLink({
     required this.name,
+    this.displayName,
     this.iconAssetName,
     required this.url,
   });

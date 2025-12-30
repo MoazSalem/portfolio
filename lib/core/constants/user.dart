@@ -56,10 +56,17 @@ const User user = User(
       description:
           "Medicine reminder app with Clean Architecture and GetX, precise scheduling via Flutter Local Notifications (persists across reboots).",
       tags: ["Flutter", "Notifications", "GetX"],
-      url: "https://github.com/MoazSalem/pills-reminder-flutter",
+      clickUrl: "https://github.com/MoazSalem/pills-reminder-flutter",
       assetsLocation: ["assets/images/previews/pills.webp"],
-      playStoreUrl:
-          "https://play.google.com/store/apps/details?id=com.moazsalem.pills_reminder",
+      externalLinks: [
+        ExternalLink(
+          name: "playstore",
+          iconAssetName: "playstore",
+          displayName: "Google Play",
+          url:
+              "https://play.google.com/store/apps/details?id=com.moazsalem.pills_reminder",
+        ),
+      ],
     ),
     Project(
       name: "Freud AI UI Kit",
@@ -67,15 +74,21 @@ const User user = User(
           "Converted complex Figma design to Flutter UI, implemented responsive layouts and reusable components.",
       tags: ["Flutter", "Figma", "Design", "Complex UI"],
       // imgUrl: "",
-      url: "https://github.com/MoazSalem/freud-ui-kit-flutter",
+      clickUrl: "https://github.com/MoazSalem/freud-ui-kit-flutter",
       assetsLocation: ["assets/images/previews/freud.webp"],
-      demoUrl: "https://moazsalem.github.io/freud-ui-kit-flutter/",
+      externalLinks: [
+        ExternalLink(
+          name: "demo",
+          displayName: "Live Demo",
+          url: "https://moazsalem.github.io/freud-ui-kit-flutter/",
+        ),
+      ],
     ),
     Project(
       name: "Otex E-Commerce",
       description: "E-Commerce app with Clean Architecture and BLoC.",
       tags: ["Flutter", "Bloc", "Figma", "Clean Architecture"],
-      url: "https://github.com/MoazSalem/otex-flutter",
+      clickUrl: "https://github.com/MoazSalem/otex-flutter",
       assetsLocation: ["assets/images/previews/otex.webp"],
     ),
     Project(
@@ -83,7 +96,7 @@ const User user = User(
       description:
           "An Android app built with Flutter to rescue your photos with messed-up dates and timestamps.",
       tags: ["Flutter", "Platform Channels", "Android"],
-      url: "https://github.com/MoazSalem/image-sorter-flutter",
+      clickUrl: "https://github.com/MoazSalem/image-sorter-flutter",
       assetsLocation: ["assets/images/previews/sorter.webp"],
     ),
     Project(
@@ -91,25 +104,37 @@ const User user = User(
       description:
           "E-Commerce app with Clean Architecture and BLoC, featuring seamless API integration, offline persistence, optimized image handling, and Payment Integration (Paymob).",
       tags: ["Flutter", "Payment Integration", "Bloc", "Caching"],
-      url: "https://github.com/MoazSalem/fakestore-e-commerce-flutter",
+      clickUrl: "https://github.com/MoazSalem/fakestore-e-commerce-flutter",
       assetsLocation: ["assets/images/previews/fakestore.webp"],
-      demoUrl: "https://moazsalem.github.io/fakestore-e-commerce-flutter/",
+      externalLinks: [
+        ExternalLink(
+          name: "demo",
+          displayName: "Live Demo",
+          url: "https://moazsalem.github.io/fakestore-e-commerce-flutter/",
+        ),
+      ],
     ),
     Project(
       name: "TMDB",
       description:
           "Flutter Web app implementing TMDB API, integrated Deep Linking using go_router and Bloc state management.",
       tags: ["Flutter", "Api", "Web", "Bloc", "Deep Linking"],
-      url: "https://github.com/MoazSalem/tmdb-flutter-web",
+      clickUrl: "https://github.com/MoazSalem/tmdb-flutter-web",
       assetsLocation: ["assets/images/previews/tmdb.webp"],
-      demoUrl: "https://tmdb55.web.app/js/",
+      externalLinks: [
+        ExternalLink(
+          name: "demo",
+          displayName: "Live Demo",
+          url: "https://tmdb55.web.app/js/",
+        ),
+      ],
     ),
     Project(
       name: "Snake",
       description:
           "Mobile game with online leaderboard using Firestore, Bloc, and MVVM principles; optimized for smooth performance.",
       tags: ["Flutter", "Game", "Firebase", "Firestore", "Bloc"],
-      url: "https://github.com/MoazSalem/snake-game-flutter",
+      clickUrl: "https://github.com/MoazSalem/snake-game-flutter",
       assetsLocation: ["assets/images/previews/snake.webp"],
     ),
     Project(
@@ -117,10 +142,17 @@ const User user = User(
       description:
           "Notes app with Clean Architecture and Riverpod, text & voice notes, Arabic localization, customizable themes, and offline storage (sqflite).",
       tags: ["Flutter", "Riverpod", "Sqflite", "Voice Recording"],
-      url: "https://github.com/MoazSalem/colorful-notes-flutter",
+      clickUrl: "https://github.com/MoazSalem/colorful-notes-flutter",
       assetsLocation: ["assets/images/previews/colorful.webp"],
-      playStoreUrl:
-          'https://play.google.com/store/apps/details?id=com.moazsalem.notes',
+      externalLinks: [
+        ExternalLink(
+          name: "playstore",
+          iconAssetName: "playstore",
+          displayName: "Google Play",
+          url:
+              'https://play.google.com/store/apps/details?id=com.moazsalem.notes',
+        ),
+      ],
     ),
   ],
   email: "moaztalaat6@gmail.com",

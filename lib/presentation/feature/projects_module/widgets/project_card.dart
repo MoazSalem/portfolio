@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:motor/motor.dart';
 import 'package:portfolio/core/theme/sizes.dart';
+import 'package:portfolio/core/utils/assets.dart';
 import 'package:portfolio/domain/entities/user.dart';
 import 'package:portfolio/presentation/shared_widgets/circular_border_button.dart';
+import 'package:portfolio/presentation/shared_widgets/svg_asset.dart';
 import 'package:web/web.dart' as web show window;
 
 class ProjectCard extends StatefulWidget {
@@ -39,7 +41,9 @@ class _ProjectCardState extends State<ProjectCard> {
             return Padding(
               padding: EdgeInsets.all(value),
               child: InkWell(
-                onTap: () => web.window.open(widget.project.url ?? ''),
+                onTap: widget.project.clickUrl != null
+                    ? () => web.window.open(widget.project.clickUrl!)
+                    : null,
                 onTapUp: (details) =>
                     statesController.update(WidgetState.pressed, false),
                 onTapDown: (details) =>
@@ -54,6 +58,7 @@ class _ProjectCardState extends State<ProjectCard> {
                   child: Stack(
                     alignment: Alignment.bottomLeft,
                     children: [
+                      // background photo
                       if (widget.project.imgsUrl != null)
                         ClipRRect(
                           borderRadius: BorderRadius.circular(
@@ -84,6 +89,7 @@ class _ProjectCardState extends State<ProjectCard> {
                             ),
                           ),
                         ),
+                      // animated background gradient
                       AnimatedContainer(
                         duration: const Duration(milliseconds: 300),
                         alignment: Alignment.bottomLeft,
@@ -109,6 +115,62 @@ class _ProjectCardState extends State<ProjectCard> {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            // external links wrap
+                            if (widget.project.externalLinks != null) ...[
+                              Wrap(
+                                spacing: AppSizes.p8,
+                                runSpacing: AppSizes.p8,
+                                children: List.generate(
+                                  widget.project.externalLinks!.length,
+                                  (i) => CircularBorderButton(
+                                    onTap: () => web.window.open(
+                                      widget.project.externalLinks![i].url,
+                                    ),
+                                    paddingValue: AppSizes.p8,
+                                    color: theme.colorScheme.primary,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      spacing: AppSizes.p4,
+                                      children: [
+                                        if (widget
+                                                .project
+                                                .externalLinks![i]
+                                                .iconAssetName !=
+                                            null)
+                                          SvgAsset(
+                                            iconSize: AppSizes.iconSizeSmall,
+                                            assetName: AppAssets.getSvgByName(
+                                              widget
+                                                  .project
+                                                  .externalLinks![i]
+                                                  .name,
+                                            ),
+                                            color: theme.colorScheme.primary,
+                                          ),
+                                        Text(
+                                          widget
+                                                  .project
+                                                  .externalLinks![i]
+                                                  .displayName ??
+                                              widget
+                                                  .project
+                                                  .externalLinks![i]
+                                                  .name
+                                                  .toUpperCase(),
+                                          style: theme.textTheme.displaySmall
+                                              ?.copyWith(
+                                                color:
+                                                    theme.colorScheme.primary,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: AppSizes.p8),
+                            ],
+
                             Text(
                               widget.project.name,
                               style: theme.textTheme.titleMedium,
@@ -128,12 +190,12 @@ class _ProjectCardState extends State<ProjectCard> {
                                   widget.project.tags!.length,
                                   (i) => CircularBorderButton(
                                     paddingValue: AppSizes.p8,
-                                    color: theme.colorScheme.primary,
+                                    color: theme.colorScheme.outline,
                                     child: Text(
                                       widget.project.tags![i],
                                       style: theme.textTheme.displaySmall
                                           ?.copyWith(
-                                            color: theme.colorScheme.primary,
+                                            color: theme.colorScheme.onSurface,
                                           ),
                                     ),
                                   ),

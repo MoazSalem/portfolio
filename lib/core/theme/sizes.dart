@@ -16,6 +16,7 @@ class AppSizes {
   static const double outlineWidth = 1;
   static const double borderRadius = 30;
   static const double circularRadius = 200;
+  static const double iconSizeSmall = 14;
   static const double iconSize = 20;
   static const double iconSizeLarge = 30;
   static const double defaultLinkHeight = 40;
