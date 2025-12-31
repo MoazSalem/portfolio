@@ -51,9 +51,7 @@ class IntroductionTextColumn extends StatelessWidget {
             maxLines: AppSizes.userDescriptionMaxLines,
             overflow: TextOverflow.ellipsis,
             introductionData.description,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.outline,
-            ),
+            style: theme.textTheme.bodyMedium?.copyWith(color: Colors.white70),
           ),
         ),
         const SizedBox(height: AppSizes.p40),

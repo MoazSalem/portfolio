@@ -6,12 +6,14 @@ class CircularBorderButton extends StatefulWidget {
   final void Function()? onTap;
   final Widget child;
   final Color? color;
+  final Color? backgroundColor;
   final double? paddingValue;
   const CircularBorderButton({
     super.key,
     this.onTap,
     required this.child,
     this.color,
+    this.backgroundColor,
     this.paddingValue,
   });
 
@@ -37,7 +39,7 @@ class _CircularBorderButtonState extends State<CircularBorderButton> {
           color: widget.color ?? Theme.of(context).colorScheme.outline,
         ),
       ),
-      color: Colors.transparent,
+      color: widget.backgroundColor ?? Colors.transparent,
       child: ListenableBuilder(
         listenable: statesController,
         builder: (context, child) {

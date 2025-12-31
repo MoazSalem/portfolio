@@ -177,7 +177,9 @@ class _ProjectCardState extends State<ProjectCard> {
                             ),
                             Text(
                               widget.project.description ?? '',
-                              style: theme.textTheme.labelSmall,
+                              style: theme.textTheme.labelSmall?.copyWith(
+                                color: Colors.white70,
+                              ),
                               maxLines: 5,
                               overflow: TextOverflow.ellipsis,
                             ),

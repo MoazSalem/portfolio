@@ -76,7 +76,7 @@ class _EducationModuleState extends State<EducationModule>
                     ),
                     Text(
                       "${widget.educationData.startDate} - ${widget.educationData.endDate}",
-                      style: const TextStyle(color: Colors.grey),
+                      style: const TextStyle(color: Colors.white70),
                     ),
                   ],
                 ),
@@ -118,7 +118,7 @@ class _EducationModuleState extends State<EducationModule>
                         Text(
                           widget.educationData.graduationProject!.description,
                           style: theme.textTheme.bodyMedium?.copyWith(
-                            color: theme.colorScheme.outline,
+                            color: Colors.white70,
                           ),
                         ),
                         Text(

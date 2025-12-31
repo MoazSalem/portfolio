@@ -95,8 +95,11 @@ class _ContactModuleState extends State<ContactModule>
             const SizedBox(height: AppSizes.p40),
             RichText(
               text: TextSpan(
-                text: "Made With ",
-                style: theme.textTheme.labelSmall?.copyWith(height: 1),
+                text: "Made with ",
+                style: theme.textTheme.labelSmall?.copyWith(
+                  height: 1,
+                  color: Colors.white70,
+                ),
                 children: [
                   TextSpan(
                     text: "Flutter",
@@ -104,7 +107,7 @@ class _ContactModuleState extends State<ContactModule>
                       color: theme.colorScheme.primary,
                     ),
                   ),
-                  const TextSpan(text: " By "),
+                  const TextSpan(text: " by "),
                   TextSpan(
                     text: "MoazSalem",
                     style: theme.textTheme.labelSmall?.copyWith(
