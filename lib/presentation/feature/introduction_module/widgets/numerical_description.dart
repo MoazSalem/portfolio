@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:motor/motor.dart';
 import 'package:portfolio/core/theme/durations.dart';
 import 'package:portfolio/core/theme/sizes.dart';
 import 'package:portfolio/domain/entities/user.dart';
@@ -22,6 +23,7 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
   late final AnimationController _controller;
   late final Animation<int> _animation;
   bool _isAnimationDone = false;
+  final _stateController = WidgetStatesController();
 
   // Define the listener function
   void _onAnimationCompleted(AnimationStatus status) {
@@ -62,12 +64,13 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
     // Just in case the widget is removed *before* the animation finishes
     _controller.removeStatusListener(_onAnimationCompleted);
     _controller.dispose();
+    _stateController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final theme = Theme.of(context);
     return Row(
       spacing: AppSizes.p20,
       mainAxisSize: MainAxisSize.min,
@@ -82,10 +85,43 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
               maxWidth: AppSizes.numericalDescriptionNumberWidth,
             ),
             child: _isAnimationDone
-                ? Text(
-                    "${widget.numericalDescription.value}",
-                    textAlign: TextAlign.center,
-                    style: textTheme.headlineMedium,
+                ? ValueListenableBuilder(
+                    valueListenable: _stateController,
+                    builder: (context, _, child) {
+                      return SingleMotionBuilder(
+                        motion: const CupertinoMotion.smooth(),
+                        builder: (context, value, child) {
+                          return MouseRegion(
+                            onHover: (event) => _stateController.update(
+                              WidgetState.hovered,
+                              true,
+                            ),
+                            onExit: (event) => _stateController.update(
+                              WidgetState.hovered,
+                              false,
+                            ),
+                            child: Text(
+                              "${widget.numericalDescription.value}",
+                              textAlign: TextAlign.center,
+                              style: theme.textTheme.headlineMedium?.copyWith(
+                                fontSize: value,
+                                color:
+                                    _stateController.value.contains(
+                                      WidgetState.hovered,
+                                    )
+                                    ? theme.colorScheme.primary
+                                    : null,
+                              ),
+                            ),
+                          );
+                        },
+                        value: switch (_stateController.value) {
+                          final v when v.contains(WidgetState.hovered) =>
+                            theme.textTheme.headlineLarge!.fontSize!,
+                          _ => theme.textTheme.headlineMedium!.fontSize!,
+                        },
+                      );
+                    },
                   )
                 : AnimatedBuilder(
                     animation: _animation,
@@ -93,7 +129,7 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
                       return Text(
                         "${_animation.value}",
                         textAlign: TextAlign.center,
-                        style: textTheme.headlineMedium,
+                        style: theme.textTheme.headlineMedium,
                       );
                     },
                   ),
@@ -107,7 +143,7 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
           child: Text(
             widget.numericalDescription.title,
             textAlign: TextAlign.start,
-            style: textTheme.labelSmall?.copyWith(color: Colors.white70),
+            style: theme.textTheme.labelSmall?.copyWith(color: Colors.white70),
           ),
         ),
       ],

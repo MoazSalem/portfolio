@@ -22,38 +22,41 @@ class CircularBorderButton extends StatefulWidget {
 }
 
 class _CircularBorderButtonState extends State<CircularBorderButton> {
-  final statesController = WidgetStatesController();
+  final _statesController = WidgetStatesController();
 
   @override
   void dispose() {
     super.dispose();
-    statesController.dispose();
+    _statesController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      shape: StadiumBorder(
-        side: BorderSide(
-          width: AppSizes.outlineWidth,
-          color: widget.color ?? Theme.of(context).colorScheme.outline,
-        ),
-      ),
-      color: widget.backgroundColor ?? Colors.transparent,
-      child: ListenableBuilder(
-        listenable: statesController,
-        builder: (context, child) {
-          return SingleMotionBuilder(
+    final theme = Theme.of(context);
+    return ListenableBuilder(
+      listenable: _statesController,
+      builder: (context, child) {
+        return Material(
+          shape: StadiumBorder(
+            side: BorderSide(
+              width: AppSizes.outlineWidth,
+              color: _statesController.value.contains(WidgetState.hovered)
+                  ? theme.colorScheme.primary
+                  : widget.color ?? theme.colorScheme.outline,
+            ),
+          ),
+          color: widget.backgroundColor ?? Colors.transparent,
+          child: SingleMotionBuilder(
             motion: const CupertinoMotion.smooth(),
             builder: (context, value, child) {
               return InkWell(
                 onTapUp: (details) =>
-                    statesController.update(WidgetState.pressed, false),
+                    _statesController.update(WidgetState.pressed, false),
                 onTapDown: (details) =>
-                    statesController.update(WidgetState.pressed, true),
+                    _statesController.update(WidgetState.pressed, true),
                 onTap: widget.onTap,
                 onHover: (hover) {
-                  statesController.update(WidgetState.hovered, hover);
+                  _statesController.update(WidgetState.hovered, hover);
                 },
                 borderRadius: const BorderRadius.all(
                   Radius.circular(AppSizes.circularRadius),
@@ -66,14 +69,14 @@ class _CircularBorderButtonState extends State<CircularBorderButton> {
                 ),
               );
             },
-            value: switch (statesController.value) {
+            value: switch (_statesController.value) {
               final v when v.contains(WidgetState.pressed) => 1.1,
               final v when v.contains(WidgetState.hovered) => 1.2,
               _ => 1,
             },
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
