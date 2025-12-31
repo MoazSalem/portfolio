@@ -39,6 +39,8 @@ class _IntroductionModuleState extends State<IntroductionModule>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                // add some space to compensate for the navbar
+                const SizedBox(height: AppSizes.p40),
                 // User Info with Avatar
                 InfoLayout(
                   introductionData: widget.introductionData,

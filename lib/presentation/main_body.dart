@@ -212,7 +212,7 @@ class _MainBodyState extends State<MainBody> {
                                       ),
                                       child: Padding(
                                         padding: const EdgeInsets.symmetric(
-                                          horizontal: AppSizes.p8,
+                                          horizontal: AppSizes.p4,
                                         ),
                                         child: Text(
                                           _modules[index],
@@ -228,9 +228,13 @@ class _MainBodyState extends State<MainBody> {
                     ),
                   ),
                   // Hamburger menu button
-                  Positioned(
-                    top: AppSizes.p24,
-                    right: AppSizes.p24,
+                  // Hamburger menu button
+                  AnimatedPositioned(
+                    duration: const Duration(milliseconds: 200),
+                    top: (MediaQuery.sizeOf(context).width < 500 && _showNavbar)
+                        ? 80
+                        : 22,
+                    right: AppSizes.p16,
                     child: CircularBorderButton(
                       color: theme.colorScheme.outline,
                       backgroundColor: theme.colorScheme.surfaceContainer

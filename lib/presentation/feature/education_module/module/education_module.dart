@@ -48,37 +48,45 @@ class _EducationModuleState extends State<EducationModule>
               ],
             ),
             const SizedBox(height: AppSizes.p20),
-            Material(
-              shape: RoundedRectangleBorder(
-                side: BorderSide(
-                  color: theme.colorScheme.outline,
-                  width: AppSizes.outlineWidth,
-                ),
-                borderRadius: BorderRadius.circular(AppSizes.p20),
+            ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxWidth: AppSizes.userDescriptionMaxWidthConstraint,
+                minWidth: AppSizes.userDescriptionMaxWidthConstraint,
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(AppSizes.p20),
-                child: Column(
-                  spacing: AppSizes.p10,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      widget.educationData.degreeName,
-                      style: theme.textTheme.labelMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
+              child: Material(
+                color: theme.colorScheme.surfaceContainerHighest,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    color: theme.colorScheme.outline,
+                    width: AppSizes.outlineWidth,
+                  ),
+                  borderRadius: BorderRadius.circular(AppSizes.borderRadius),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(AppSizes.p20),
+                  child: Column(
+                    spacing: AppSizes.p10,
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.educationData.degreeName,
+                        style: theme.textTheme.labelMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Text(
-                      widget.educationData.universityName,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: theme.colorScheme.primary,
+                      Text(
+                        widget.educationData.universityName,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.colorScheme.primary,
+                        ),
                       ),
-                    ),
-                    Text(
-                      "${widget.educationData.startDate} - ${widget.educationData.endDate}",
-                      style: const TextStyle(color: Colors.white70),
-                    ),
-                  ],
+                      Text(
+                        "${widget.educationData.startDate} - ${widget.educationData.endDate}",
+                        style: const TextStyle(color: Colors.white70),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -90,44 +98,52 @@ class _EducationModuleState extends State<EducationModule>
                   color: theme.colorScheme.outline,
                 ),
               ),
-              Material(
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(
-                    color: theme.colorScheme.outline,
-                    width: AppSizes.outlineWidth,
-                  ),
-                  borderRadius: BorderRadius.circular(AppSizes.p20),
+              ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxWidth: AppSizes.userDescriptionMaxWidthConstraint,
+                  minWidth: AppSizes.userDescriptionMaxWidthConstraint,
                 ),
-                child: InkWell(
-                  onTap: () => web.window.open(
-                    widget.educationData.graduationProject!.link!,
+                child: Material(
+                  color: theme.colorScheme.surfaceContainerHighest,
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: theme.colorScheme.outline,
+                      width: AppSizes.outlineWidth,
+                    ),
+                    borderRadius: BorderRadius.circular(AppSizes.borderRadius),
                   ),
-                  borderRadius: BorderRadius.circular(AppSizes.p20),
-                  child: Padding(
-                    padding: const EdgeInsets.all(AppSizes.p20),
-                    child: Column(
-                      spacing: AppSizes.p10,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          widget.educationData.graduationProject!.title,
-                          style: theme.textTheme.labelMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
+                  child: InkWell(
+                    onTap: () => web.window.open(
+                      widget.educationData.graduationProject!.link!,
+                    ),
+                    borderRadius: BorderRadius.circular(AppSizes.p20),
+                    child: Padding(
+                      padding: const EdgeInsets.all(AppSizes.p20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        spacing: AppSizes.p10,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            widget.educationData.graduationProject!.title,
+                            style: theme.textTheme.labelMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        Text(
-                          widget.educationData.graduationProject!.description,
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            color: Colors.white70,
+                          Text(
+                            "(Score: ${widget.educationData.graduationProject!.score})",
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.colorScheme.primary,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "(Score: ${widget.educationData.graduationProject!.score})",
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            color: theme.colorScheme.primary,
+                          Text(
+                            widget.educationData.graduationProject!.description,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: Colors.white70,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
