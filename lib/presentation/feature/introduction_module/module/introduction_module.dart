@@ -52,7 +52,6 @@ class _IntroductionModuleState extends State<IntroductionModule>
                 NumericalDescriptionsWrap(
                   numericalDescriptions:
                       widget.introductionData.numericalDescriptions,
-                  maxWidth: constraints.maxWidth,
                 ),
               ],
             ),

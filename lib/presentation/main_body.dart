@@ -228,7 +228,6 @@ class _MainBodyState extends State<MainBody> {
                     ),
                   ),
                   // Hamburger menu button
-                  // Hamburger menu button
                   AnimatedPositioned(
                     duration: const Duration(milliseconds: 200),
                     top: (MediaQuery.sizeOf(context).width < 500 && _showNavbar)
