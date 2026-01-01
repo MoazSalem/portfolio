@@ -98,11 +98,20 @@ class _WorkCardState extends State<WorkCard> {
                               widget.workExperience.responsibilities!.length,
                               (index) => Padding(
                                 padding: const EdgeInsets.symmetric(
-                                  horizontal: AppSizes.p4,
                                   vertical: AppSizes.p4,
                                 ),
-                                child: Text(
-                                  "•  ${widget.workExperience.responsibilities![index]}",
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text("•  "),
+                                    Expanded(
+                                      child: Text(
+                                        widget
+                                            .workExperience
+                                            .responsibilities![index],
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),

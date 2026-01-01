@@ -24,7 +24,7 @@ class AppSizes {
   static const double defaultLinkWidth = 8;
   static const double projectContainerMaxCrossAxisExtent = 600;
   static const double educationContainerMaxWidth = 800;
-  static const double workContainerMaxWidth = 1100;
+  static const double workContainerMaxWidth = 1080;
 
   // breakpoints and scaling factors
   static const double portraitBreakpoint = 800.0;
