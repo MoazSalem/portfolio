@@ -68,7 +68,7 @@ const User user = User(
       startDate: "Mar 2024",
       endDate: "Mar 2025",
       responsibilities: [
-        "Managed and maintained a network of 30 computers, including printer configuration, and customized existing systems to meet organizational requirements.",
+        "Managed and maintained a network of over 30 computers, including printer configuration, and customized existing systems to meet organizational requirements.",
         "Provided technical management and coordination for multiple seminars across Egypt, ensuring smooth operations and effective on-site support.",
         "Created, edited, and formatted professional documents and presentations using Microsoft Word and PowerPoint.",
       ],

@@ -53,6 +53,9 @@ class _IntroductionTextColumnState extends State<IntroductionTextColumn> {
             return SingleMotionBuilder(
               motion: const CupertinoMotion.smooth(),
               builder: (context, value, child) {
+                final bool isHovered = _stateController.value.contains(
+                  WidgetState.hovered,
+                );
                 return MouseRegion(
                   onHover: (event) =>
                       _stateController.update(WidgetState.hovered, true),
@@ -60,7 +63,7 @@ class _IntroductionTextColumnState extends State<IntroductionTextColumn> {
                       _stateController.update(WidgetState.hovered, false),
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
-                    color: _stateController.value.contains(WidgetState.hovered)
+                    color: isHovered
                         ? theme.colorScheme.primary
                         : Colors.transparent,
                     curve: Curves.easeOut,
@@ -70,10 +73,7 @@ class _IntroductionTextColumnState extends State<IntroductionTextColumn> {
                       child: Text(
                         widget.introductionData.name,
                         style: theme.textTheme.headlineLarge?.copyWith(
-                          color:
-                              _stateController.value.contains(
-                                WidgetState.hovered,
-                              )
+                          color: isHovered
                               ? theme.colorScheme.onPrimary
                               : theme.colorScheme.primary,
                         ),

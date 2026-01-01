@@ -17,22 +17,23 @@ class ProjectCard extends StatefulWidget {
 }
 
 class _ProjectCardState extends State<ProjectCard> {
-  final statesController = WidgetStatesController();
+  final _statesController = WidgetStatesController();
 
   @override
   void dispose() {
     super.dispose();
-    statesController.dispose();
+    _statesController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return ValueListenableBuilder(
-      valueListenable: statesController,
+      valueListenable: _statesController,
       builder: (context, _, child) {
         // set the color based on the hover state
-        final Color color = statesController.value.contains(WidgetState.hovered)
+        final Color color =
+            _statesController.value.contains(WidgetState.hovered)
             ? theme.colorScheme.primaryContainer
             : Colors.black;
         return SingleMotionBuilder(
@@ -45,11 +46,11 @@ class _ProjectCardState extends State<ProjectCard> {
                     ? () => web.window.open(widget.project.clickUrl!)
                     : null,
                 onTapUp: (details) =>
-                    statesController.update(WidgetState.pressed, false),
+                    _statesController.update(WidgetState.pressed, false),
                 onTapDown: (details) =>
-                    statesController.update(WidgetState.pressed, true),
+                    _statesController.update(WidgetState.pressed, true),
                 onHover: (hover) {
-                  statesController.update(WidgetState.hovered, hover);
+                  _statesController.update(WidgetState.hovered, hover);
                 },
                 borderRadius: BorderRadius.circular(AppSizes.borderRadius),
                 child: Material(
@@ -212,7 +213,7 @@ class _ProjectCardState extends State<ProjectCard> {
               ),
             );
           },
-          value: switch (statesController.value) {
+          value: switch (_statesController.value) {
             final v when v.contains(WidgetState.pressed) => AppSizes.p4,
             final v when v.contains(WidgetState.hovered) => AppSizes.p2,
             _ => AppSizes.p8,

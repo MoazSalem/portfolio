@@ -48,19 +48,10 @@ class _WorkModuleState extends State<WorkModule>
               ],
             ),
             const SizedBox(height: AppSizes.p20),
-            LayoutBuilder(
-              builder: (context, constraints) {
-                return Column(
-                  spacing: AppSizes.p20,
-                  children: List.generate(widget.workExperiences.length, (
-                    index,
-                  ) {
-                    return WorkCard(
-                      workExperience: widget.workExperiences[index],
-                    );
-                  }),
-                );
-              },
+            Column(
+              children: List.generate(widget.workExperiences.length, (index) {
+                return WorkCard(workExperience: widget.workExperiences[index]);
+              }),
             ),
           ],
         ),
