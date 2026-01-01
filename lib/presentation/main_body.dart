@@ -98,155 +98,161 @@ class _MainBodyState extends State<MainBody> {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  SelectionArea(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(
-                        maxWidth: AppSizes.moduleMaxWidth,
-                        minWidth: AppSizes.moduleMinWidth,
-                      ),
-                      child: CustomScrollView(
-                        controller: scrollController,
-                        scrollBehavior: const ScrollBehavior().copyWith(
-                          scrollbars: false,
-                        ),
-                        physics: const ClampingScrollPhysics(),
-                        slivers: [
-                          SliverToBoxAdapter(
-                            child: IntroductionModule(
-                              key: _keys[0],
-                              introductionData: user.introductionData,
-                              externalLinks: user.externalLinks,
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      SelectionArea(
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(
+                            maxWidth: AppSizes.moduleMaxWidth,
+                            minWidth: AppSizes.moduleMinWidth,
+                          ),
+                          child: CustomScrollView(
+                            controller: scrollController,
+                            scrollBehavior: const ScrollBehavior().copyWith(
+                              scrollbars: false,
                             ),
-                          ),
-                          const SliverToBoxAdapter(child: ModulesLink()),
-                          SliverToBoxAdapter(
-                            child: EducationModule(
-                              key: _keys[1],
-                              educationData: user.educationData,
-                            ),
-                          ),
-                          const SliverToBoxAdapter(child: ModulesLink()),
-                          SliverLayoutBuilder(
-                            builder: (context, constraints) {
-                              return DecoratedSliver(
-                                decoration: BoxDecoration(
-                                  color: theme.colorScheme.surfaceContainer,
-                                ),
-                                sliver: SliverPadding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical:
-                                        AppSizes.moduleInnerVerticalPadding,
-                                    horizontal:
-                                        AppSizes.moduleInnerHorizontalPadding,
-                                  ),
-                                  sliver: SliverMainAxisGroup(
-                                    slivers: [
-                                      SliverToBoxAdapter(
-                                        child: Column(
-                                          key: _keys[2],
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            const ProjectsHeader(),
-                                            const SizedBox(
-                                              height: AppSizes.p60,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      ProjectsSliverGrid(
-                                        projects: user.projects,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                          const SliverToBoxAdapter(child: ModulesLink()),
-                          SliverToBoxAdapter(
-                            child: ContactModule(
-                              key: _keys[3],
-                              email: user.email,
-                              externalLinks: user.externalLinks.reversed
-                                  .toList(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  // Navbar
-                  Positioned(
-                    top: AppSizes.p16,
-                    child: AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 500),
-                      switchInCurve: Curves.easeInOut,
-                      switchOutCurve: Curves.easeOutCubic,
-                      child: _showNavbar
-                          ? Card(
-                              color: theme.colorScheme.surfaceContainer
-                                  .withAlpha(160),
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                  color: theme.colorScheme.outline,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(
-                                  AppSizes.borderRadius,
+                            physics: const ClampingScrollPhysics(),
+                            slivers: [
+                              SliverToBoxAdapter(
+                                child: IntroductionModule(
+                                  key: _keys[0],
+                                  introductionData: user.introductionData,
+                                  externalLinks: user.externalLinks,
                                 ),
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(AppSizes.p8),
-                                child: Row(
-                                  spacing: AppSizes.p8,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: List.generate(
-                                    _modules.length,
-                                    (index) => CircularBorderButton(
-                                      color: Colors.transparent,
-                                      paddingValue: AppSizes.p8,
-                                      onTap: () => _scrollToModule(
-                                        _keys[index],
-                                        scrollController,
+                              const SliverToBoxAdapter(child: ModulesLink()),
+                              SliverToBoxAdapter(
+                                child: EducationModule(
+                                  key: _keys[1],
+                                  educationData: user.educationData,
+                                ),
+                              ),
+                              const SliverToBoxAdapter(child: ModulesLink()),
+                              SliverLayoutBuilder(
+                                builder: (context, constraints) {
+                                  return DecoratedSliver(
+                                    decoration: BoxDecoration(
+                                      color: theme.colorScheme.surfaceContainer,
+                                    ),
+                                    sliver: SliverPadding(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical:
+                                            AppSizes.moduleInnerVerticalPadding,
+                                        horizontal: AppSizes
+                                            .moduleInnerHorizontalPadding,
                                       ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: AppSizes.p4,
-                                        ),
-                                        child: Text(
-                                          _modules[index],
-                                          style: theme.textTheme.labelSmall,
+                                      sliver: SliverMainAxisGroup(
+                                        slivers: [
+                                          SliverToBoxAdapter(
+                                            child: Column(
+                                              key: _keys[2],
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                const ProjectsHeader(),
+                                                const SizedBox(
+                                                  height: AppSizes.p60,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          ProjectsSliverGrid(
+                                            projects: user.projects,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                              const SliverToBoxAdapter(child: ModulesLink()),
+                              SliverToBoxAdapter(
+                                child: ContactModule(
+                                  key: _keys[3],
+                                  email: user.email,
+                                  externalLinks: user.externalLinks.reversed
+                                      .toList(),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      // Navbar
+                      Positioned(
+                        top: AppSizes.p16,
+                        child: AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 500),
+                          switchInCurve: Curves.easeInOut,
+                          switchOutCurve: Curves.easeOutCubic,
+                          child: _showNavbar
+                              ? Card(
+                                  color: theme.colorScheme.surfaceContainer
+                                      .withAlpha(160),
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                      color: theme.colorScheme.outline,
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(
+                                      AppSizes.borderRadius,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(AppSizes.p8),
+                                    child: Row(
+                                      spacing: AppSizes.p8,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: List.generate(
+                                        _modules.length,
+                                        (index) => CircularBorderButton(
+                                          color: Colors.transparent,
+                                          paddingValue: AppSizes.p8,
+                                          onTap: () => _scrollToModule(
+                                            _keys[index],
+                                            scrollController,
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: AppSizes.p4,
+                                            ),
+                                            child: Text(
+                                              _modules[index],
+                                              style: theme.textTheme.labelSmall,
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            )
-                          : const SizedBox.shrink(),
-                    ),
-                  ),
-                  // Hamburger menu button
-                  AnimatedPositioned(
-                    duration: const Duration(milliseconds: 200),
-                    top: (MediaQuery.sizeOf(context).width < 500 && _showNavbar)
-                        ? 80
-                        : 22,
-                    right: AppSizes.p16,
-                    child: CircularBorderButton(
-                      color: theme.colorScheme.outline,
-                      backgroundColor: theme.colorScheme.surfaceContainer
-                          .withAlpha(180),
-                      paddingValue: AppSizes.p12,
-                      onTap: () => setState(() {
-                        _showNavbar = !_showNavbar;
-                      }),
-                      child: Icon(
-                        Icons.menu,
-                        color: theme.colorScheme.onSurface,
+                                )
+                              : const SizedBox.shrink(),
+                        ),
                       ),
-                    ),
+                      // Hamburger menu button
+                      AnimatedPositioned(
+                        duration: const Duration(milliseconds: 200),
+                        top:
+                            (MediaQuery.sizeOf(context).width < 500 &&
+                                _showNavbar)
+                            ? 80
+                            : 22,
+                        right: AppSizes.p16,
+                        child: CircularBorderButton(
+                          color: theme.colorScheme.outline,
+                          backgroundColor: theme.colorScheme.surfaceContainer
+                              .withAlpha(180),
+                          paddingValue: AppSizes.p12,
+                          onTap: () => setState(() {
+                            _showNavbar = !_showNavbar;
+                          }),
+                          child: Icon(
+                            Icons.menu,
+                            color: theme.colorScheme.onSurface,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   if (_showAnimation) // to unmount the animations once it's done
                     const IntroAnimation(
