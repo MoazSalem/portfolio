@@ -13,6 +13,7 @@ class AppSizes {
   static const int userDescriptionMaxLines = 5;
   static const double numericalDescriptionTextWidth = 100;
   static const double numericalDescriptionNumberWidth = 80;
+  static const double numericalDescriptionWrapMaxWidth = 1230;
   static const double outlineWidth = 1;
   static const double borderRadius = 30;
   static const double circularRadius = 200;

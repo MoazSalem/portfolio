@@ -49,9 +49,14 @@ class _IntroductionModuleState extends State<IntroductionModule>
                 ),
                 const SizedBox(height: AppSizes.p40),
                 // Numerical Descriptions under the info
-                NumericalDescriptionsWrap(
-                  numericalDescriptions:
-                      widget.introductionData.numericalDescriptions,
+                ConstrainedBox(
+                  constraints: const BoxConstraints(
+                    maxWidth: AppSizes.numericalDescriptionWrapMaxWidth,
+                  ),
+                  child: NumericalDescriptionsWrap(
+                    numericalDescriptions:
+                        widget.introductionData.numericalDescriptions,
+                  ),
                 ),
               ],
             ),
