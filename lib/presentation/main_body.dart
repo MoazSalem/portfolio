@@ -204,6 +204,8 @@ class _MainBodyState extends State<MainBody> {
                       // Navbar
                       Positioned(
                         top: AppSizes.p16,
+                        right: AppSizes.p16,
+                        left: AppSizes.p16,
                         child: AnimatedSwitcher(
                           duration: const Duration(milliseconds: 500),
                           switchInCurve: Curves.easeInOut,
@@ -223,9 +225,8 @@ class _MainBodyState extends State<MainBody> {
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(AppSizes.p8),
-                                    child: Row(
+                                    child: Wrap(
                                       spacing: AppSizes.p8,
-                                      mainAxisSize: MainAxisSize.min,
                                       children: List.generate(
                                         _modules.length,
                                         (index) => CircularBorderButton(

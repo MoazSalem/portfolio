@@ -45,7 +45,11 @@ class _IntroductionTextColumnState extends State<IntroductionTextColumn> {
           style: theme.textTheme.headlineSmall,
         ),
         const SizedBox(height: AppSizes.p10),
-        Text('Hello I\'m', style: theme.textTheme.headlineLarge),
+        Text(
+          'Hello I\'m',
+          textAlign: TextAlign.center,
+          style: theme.textTheme.headlineLarge,
+        ),
         // User name
         ValueListenableBuilder(
           valueListenable: _stateController,
@@ -72,6 +76,7 @@ class _IntroductionTextColumnState extends State<IntroductionTextColumn> {
                       duration: const Duration(milliseconds: 200),
                       child: Text(
                         widget.introductionData.name,
+                        textAlign: TextAlign.center,
                         style: theme.textTheme.headlineLarge?.copyWith(
                           color: isHovered
                               ? theme.colorScheme.onPrimary
