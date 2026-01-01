@@ -7,6 +7,7 @@ import 'package:portfolio/presentation/feature/education_module/module/education
 import 'package:portfolio/presentation/feature/independent_animations/intro_animation.dart';
 import 'package:portfolio/presentation/feature/introduction_module/module/introduction_module.dart';
 import 'package:portfolio/presentation/feature/projects_module/module/projects_module.dart';
+import 'package:portfolio/presentation/feature/work_module/module/work_module.dart';
 import 'package:portfolio/presentation/shared_widgets/circular_border_button.dart';
 import 'package:portfolio/presentation/shared_widgets/modules_link.dart';
 import 'package:scroll_animator/scroll_animator.dart';
@@ -26,7 +27,13 @@ class _MainBodyState extends State<MainBody> {
   bool _showNavbar = true;
 
   // for the navbar
-  final List<String> _modules = ["About", "Education", "Projects", "Contact"];
+  final List<String> _modules = [
+    "About",
+    "Education",
+    "Work",
+    "Projects",
+    "Contact",
+  ];
   late final List<GlobalKey> _keys = List.generate(
     _modules.length,
     (index) => GlobalKey(),
@@ -121,59 +128,75 @@ class _MainBodyState extends State<MainBody> {
                                   externalLinks: user.externalLinks,
                                 ),
                               ),
-                              const SliverToBoxAdapter(child: ModulesLink()),
-                              SliverToBoxAdapter(
-                                child: EducationModule(
-                                  key: _keys[1],
-                                  educationData: user.educationData,
+                              if (user.educationData != null) ...[
+                                const SliverToBoxAdapter(child: ModulesLink()),
+                                SliverToBoxAdapter(
+                                  child: EducationModule(
+                                    key: _keys[1],
+                                    educationData: user.educationData!,
+                                  ),
                                 ),
-                              ),
-                              const SliverToBoxAdapter(child: ModulesLink()),
-                              SliverLayoutBuilder(
-                                builder: (context, constraints) {
-                                  return DecoratedSliver(
-                                    decoration: BoxDecoration(
-                                      color: theme.colorScheme.surfaceContainer,
-                                    ),
-                                    sliver: SliverPadding(
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical:
-                                            AppSizes.moduleInnerVerticalPadding,
-                                        horizontal: AppSizes
-                                            .moduleInnerHorizontalPadding,
+                              ],
+                              if (user.workExperiences != null) ...[
+                                const SliverToBoxAdapter(child: ModulesLink()),
+                                SliverToBoxAdapter(
+                                  child: WorkModule(
+                                    key: _keys[2],
+                                    workExperiences: user.workExperiences!,
+                                  ),
+                                ),
+                              ],
+                              if (user.projects != null) ...[
+                                const SliverToBoxAdapter(child: ModulesLink()),
+                                SliverLayoutBuilder(
+                                  builder: (context, constraints) {
+                                    return DecoratedSliver(
+                                      decoration: BoxDecoration(
+                                        color:
+                                            theme.colorScheme.surfaceContainer,
                                       ),
-                                      sliver: SliverMainAxisGroup(
-                                        slivers: [
-                                          SliverToBoxAdapter(
-                                            child: Column(
-                                              key: _keys[2],
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                const ProjectsHeader(),
-                                                const SizedBox(
-                                                  height: AppSizes.p60,
-                                                ),
-                                              ],
+                                      sliver: SliverPadding(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: AppSizes
+                                              .moduleInnerVerticalPadding,
+                                          horizontal: AppSizes
+                                              .moduleInnerHorizontalPadding,
+                                        ),
+                                        sliver: SliverMainAxisGroup(
+                                          slivers: [
+                                            SliverToBoxAdapter(
+                                              child: Column(
+                                                key: _keys[3],
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  const ProjectsHeader(),
+                                                  const SizedBox(
+                                                    height: AppSizes.p60,
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          ProjectsSliverGrid(
-                                            projects: user.projects,
-                                          ),
-                                        ],
+                                            ProjectsSliverGrid(
+                                              projects: user.projects!,
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                },
-                              ),
-                              const SliverToBoxAdapter(child: ModulesLink()),
-                              SliverToBoxAdapter(
-                                child: ContactModule(
-                                  key: _keys[3],
-                                  email: user.email,
-                                  externalLinks: user.externalLinks.reversed
-                                      .toList(),
+                                    );
+                                  },
                                 ),
-                              ),
+                              ],
+                              if (user.email != null) ...[
+                                const SliverToBoxAdapter(child: ModulesLink()),
+                                SliverToBoxAdapter(
+                                  child: ContactModule(
+                                    key: _keys[4],
+                                    email: user.email,
+                                    externalLinks: user.externalLinks.reversed
+                                        .toList(),
+                                  ),
+                                ),
+                              ],
                             ],
                           ),
                         ),
@@ -233,7 +256,7 @@ class _MainBodyState extends State<MainBody> {
                       AnimatedPositioned(
                         duration: const Duration(milliseconds: 200),
                         top:
-                            (MediaQuery.sizeOf(context).width < 500 &&
+                            (MediaQuery.sizeOf(context).width < 550 &&
                                 _showNavbar)
                             ? 80
                             : 22,

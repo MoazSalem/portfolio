@@ -32,11 +32,12 @@ class EducationCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppSizes.borderRadius),
         ),
         child: InkWell(
+          borderRadius: BorderRadius.circular(AppSizes.borderRadius),
           onTap: onTap,
           child: Padding(
             padding: const EdgeInsets.all(AppSizes.p20),
             child: Column(
-              spacing: AppSizes.p10,
+              spacing: AppSizes.p4,
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

@@ -1,15 +1,17 @@
 class User {
   final IntroductionData introductionData;
   final List<ExternalLink> externalLinks;
-  final EducationData educationData;
-  final List<Project> projects;
+  final EducationData? educationData;
+  final List<WorkExperience>? workExperiences;
+  final List<Project>? projects;
   final String? email;
 
   const User({
     required this.introductionData,
     required this.externalLinks,
-    required this.educationData,
-    required this.projects,
+    this.educationData,
+    this.workExperiences,
+    this.projects,
     this.email,
   });
 }
@@ -56,6 +58,22 @@ class GraduationProject {
     required this.description,
     required this.score,
     this.link,
+  });
+}
+
+class WorkExperience {
+  final String companyName;
+  final String position;
+  final String startDate;
+  final String endDate;
+  final List<String>? responsibilities;
+
+  const WorkExperience({
+    required this.companyName,
+    required this.position,
+    required this.startDate,
+    required this.endDate,
+    this.responsibilities,
   });
 }
 

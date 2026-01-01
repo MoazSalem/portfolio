@@ -50,6 +50,51 @@ const User user = User(
       link: "https://github.com/e7na/adas_app",
     ),
   ),
+  workExperiences: [
+    WorkExperience(
+      companyName: "Freelancer",
+      position: "Flutter Developer",
+      startDate: "Oct 2022",
+      endDate: "Present",
+      responsibilities: [
+        "Delivered multiple mobile applications for clients, implementing features such as Google AdSense monetization and local notifications.",
+        "Developed a desktop mapping app to visualize and highlight locations, improving usability for client workflows.",
+        "Collaborated directly with clients to refine requirements, ensuring on-time delivery and high satisfaction.",
+      ],
+    ),
+    WorkExperience(
+      companyName: "Egyptian Armed Forces",
+      position: "IT Support Specialist",
+      startDate: "Mar 2024",
+      endDate: "Mar 2025",
+      responsibilities: [
+        "Managed and maintained a network of 30 computers, including printer configuration, and customized existing systems to meet organizational requirements.",
+        "Provided technical management and coordination for multiple seminars across Egypt, ensuring smooth operations and effective on-site support.",
+        "Created, edited, and formatted professional documents and presentations using Microsoft Word and PowerPoint.",
+      ],
+    ),
+    WorkExperience(
+      companyName: "ITI - Information Technology Institute",
+      position: "Cross platform Software Mobile Development Training",
+      startDate: "Jun 2022",
+      endDate: "Sep 2022",
+      responsibilities: [
+        "Built a team-based capstone project, applying agile methodologies, Git version control, and UI design principles.",
+        "Gained practical experience in Flutter & Dart fundamentals with structured training.",
+        "Contributed to full app lifecycle: planning, feature development, and presentation.",
+      ],
+    ),
+    WorkExperience(
+      companyName: "Huawei",
+      position: "Certified Graphic Designer",
+      startDate: "2019",
+      endDate: "2023",
+      responsibilities: [
+        "Designed and developed both free and paid graphic designs for Huawei Mobile Themes and watch faces, achieving millions of downloads worldwide.",
+        "Participated in large-scale, internationally organized design competitions, earning 1st place globally in a watch face design competition and 3rd place in the MENA region for a mobile themes competition.",
+      ],
+    ),
+  ],
   projects: [
     Project(
       name: "Pills Reminder",
