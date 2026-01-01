@@ -71,11 +71,11 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Row(
+    return Wrap(
       spacing: AppSizes.p20,
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      alignment: WrapAlignment.center,
+      runAlignment: WrapAlignment.spaceBetween,
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: AppSizes.p8),
@@ -142,7 +142,9 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
           ),
           child: Text(
             widget.numericalDescription.title,
-            textAlign: TextAlign.start,
+            textAlign: MediaQuery.sizeOf(context).width < 475
+                ? TextAlign.center
+                : TextAlign.start,
             style: theme.textTheme.labelSmall?.copyWith(color: Colors.white70),
           ),
         ),
