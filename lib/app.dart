@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/core/constants/user.dart';
 import 'package:portfolio/core/theme/theme.dart';
 import 'package:portfolio/core/utils/responsivity_handler.dart';
 import 'package:portfolio/presentation/main_body.dart';
@@ -10,7 +11,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Portfolio',
+      title: user.introductionData.name,
       theme: AppTheme.darkTheme,
       home: const Scaffold(body: ResponsivityHandler(child: MainBody())),
     );

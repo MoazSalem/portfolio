@@ -181,7 +181,12 @@ class _ProjectCardState extends State<ProjectCard> {
                               style: theme.textTheme.labelSmall?.copyWith(
                                 color: Colors.white70,
                               ),
-                              maxLines: 5,
+                              maxLines:
+                                  _statesController.value.contains(
+                                    WidgetState.hovered,
+                                  )
+                                  ? 10
+                                  : 5,
                               overflow: TextOverflow.ellipsis,
                             ),
                             const SizedBox(height: AppSizes.p16),
