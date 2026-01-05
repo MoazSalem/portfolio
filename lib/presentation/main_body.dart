@@ -148,42 +148,11 @@ class _MainBodyState extends State<MainBody> {
                               ],
                               if (user.projects != null) ...[
                                 const SliverToBoxAdapter(child: ModulesLink()),
-                                SliverLayoutBuilder(
-                                  builder: (context, constraints) {
-                                    return DecoratedSliver(
-                                      decoration: BoxDecoration(
-                                        color:
-                                            theme.colorScheme.surfaceContainer,
-                                      ),
-                                      sliver: SliverPadding(
-                                        padding: const EdgeInsets.symmetric(
-                                          vertical: AppSizes
-                                              .moduleInnerVerticalPadding,
-                                          horizontal: AppSizes
-                                              .moduleInnerHorizontalPadding,
-                                        ),
-                                        sliver: SliverMainAxisGroup(
-                                          slivers: [
-                                            SliverToBoxAdapter(
-                                              child: Column(
-                                                key: _keys[3],
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  const ProjectsHeader(),
-                                                  const SizedBox(
-                                                    height: AppSizes.p60,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            ProjectsSliverGrid(
-                                              projects: user.projects!,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  },
+                                SliverToBoxAdapter(
+                                  child: ProjectsModule(
+                                    key: _keys[3],
+                                    projects: user.projects!,
+                                  ),
                                 ),
                               ],
                               if (user.email != null) ...[

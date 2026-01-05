@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/theme/sizes.dart';
 import 'package:portfolio/domain/entities/user.dart';
 import 'package:portfolio/presentation/feature/work_module/widgets/work_card.dart';
+import 'package:portfolio/presentation/shared_widgets/circular_border_button.dart';
 
 class WorkModule extends StatefulWidget {
   const WorkModule({super.key, required this.workExperiences});
@@ -15,6 +16,7 @@ class _WorkModuleState extends State<WorkModule>
     with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
+  bool _isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +51,59 @@ class _WorkModuleState extends State<WorkModule>
             ),
             const SizedBox(height: AppSizes.p20),
             Column(
-              children: List.generate(widget.workExperiences.length, (index) {
-                return WorkCard(workExperience: widget.workExperiences[index]);
-              }),
+              children: [
+                ...List.generate(
+                  widget.workExperiences.length < 3
+                      ? widget.workExperiences.length
+                      : 3,
+                  (index) {
+                    return WorkCard(
+                      workExperience: widget.workExperiences[index],
+                    );
+                  },
+                ),
+                if (widget.workExperiences.length > 3)
+                  AnimatedSize(
+                    duration: const Duration(milliseconds: 600),
+                    alignment: Alignment.topCenter,
+                    curve: Curves.easeInOut,
+                    child: _isExpanded
+                        ? Column(
+                            children: List.generate(
+                              widget.workExperiences.length - 3,
+                              (index) {
+                                return WorkCard(
+                                  workExperience:
+                                      widget.workExperiences[index + 3],
+                                );
+                              },
+                            ),
+                          )
+                        : const SizedBox(width: double.infinity),
+                  ),
+              ],
             ),
+            if (widget.workExperiences.length > 3) ...[
+              const SizedBox(height: AppSizes.p10),
+              CircularBorderButton(
+                onTap: () => setState(() => _isExpanded = !_isExpanded),
+                paddingValue: AppSizes.p8,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: AppSizes.p8),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: AppSizes.p4,
+                    children: [
+                      Text("See ${_isExpanded ? "Less" : "More"}"),
+                      Icon(
+                        _isExpanded ? Icons.arrow_upward : Icons.arrow_downward,
+                        size: AppSizes.iconSizeSmall,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ],
         ),
       ),
