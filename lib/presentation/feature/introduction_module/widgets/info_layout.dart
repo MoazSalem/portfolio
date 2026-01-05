@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/theme/durations.dart';
 import 'package:portfolio/core/theme/sizes.dart';
 import 'package:portfolio/domain/entities/user.dart';
+import 'package:portfolio/presentation/feature/introduction_module/widgets/avatar_widget.dart';
 import 'package:portfolio/presentation/feature/introduction_module/widgets/introduction_text_column.dart';
 
 class InfoLayout extends StatefulWidget {
@@ -78,12 +79,11 @@ class _InfoLayoutState extends State<InfoLayout>
     final List<Widget> widgets = [
       // User avatar
       if (_isAnimationDone)
-        CircleAvatar(
-          radius: isPortrait
-              ? AppSizes.userAvatarRadiusSmall
-              : AppSizes.userAvatarRadiusBig,
-          backgroundImage: NetworkImage(widget.introductionData.avatarUrl),
+        AvatarWidget(
+          isPortrait: isPortrait,
+          avatarUrl: widget.introductionData.avatarUrl,
         ),
+
       // animation builder, will be removed after the animation is done
       if (!_isAnimationDone)
         AnimatedBuilder(

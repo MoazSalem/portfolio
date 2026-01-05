@@ -7,7 +7,7 @@ const User user = User(
     title: 'Flutter Developer',
     description:
         'Software Engineer with a passion for clean code, challenging UIs, and building adaptive & responsive cross-platform applications.',
-    avatarUrl: 'https://avatars.githubusercontent.com/u/88838071?v=4',
+    avatarUrl: 'assets/images/avatar.webp',
     numericalDescriptions: [
       NumericalDescription(title: 'Age', value: 25),
       NumericalDescription(title: 'Years of Experience', value: 2),
