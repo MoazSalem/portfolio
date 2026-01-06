@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart' show PointerDeviceKind;
 import 'package:flutter/material.dart';
 import 'package:motor/motor.dart';
 import 'package:portfolio/core/theme/sizes.dart';
@@ -40,7 +41,9 @@ class _CircularBorderButtonState extends State<CircularBorderButton> {
           shape: StadiumBorder(
             side: BorderSide(
               width: AppSizes.outlineWidth,
-              color: _statesController.value.contains(WidgetState.hovered)
+              color:
+                  _statesController.value.contains(WidgetState.hovered) ||
+                      _statesController.value.contains(WidgetState.pressed)
                   ? theme.colorScheme.primary
                   : widget.color ?? theme.colorScheme.outline,
             ),
@@ -49,23 +52,32 @@ class _CircularBorderButtonState extends State<CircularBorderButton> {
           child: SingleMotionBuilder(
             motion: const CupertinoMotion.smooth(),
             builder: (context, value, child) {
-              return InkWell(
-                onTapUp: (details) =>
-                    _statesController.update(WidgetState.pressed, false),
-                onTapDown: (details) =>
-                    _statesController.update(WidgetState.pressed, true),
-                onTap: widget.onTap,
+              return MouseRegion(
                 onHover: (hover) {
-                  _statesController.update(WidgetState.hovered, hover);
+                  if (hover.kind == PointerDeviceKind.mouse) {
+                    _statesController.update(WidgetState.hovered, true);
+                  }
                 },
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(AppSizes.circularRadius),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(
-                    value * (widget.paddingValue ?? AppSizes.p16),
+                onExit: (hover) {
+                  if (hover.kind == PointerDeviceKind.mouse) {
+                    _statesController.update(WidgetState.hovered, false);
+                  }
+                },
+                child: InkWell(
+                  onLongPress: () =>
+                      _statesController.update(WidgetState.pressed, true),
+                  onLongPressUp: () =>
+                      _statesController.update(WidgetState.pressed, false),
+                  onTap: widget.onTap,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(AppSizes.circularRadius),
                   ),
-                  child: widget.child,
+                  child: Padding(
+                    padding: EdgeInsets.all(
+                      value * (widget.paddingValue ?? AppSizes.p16),
+                    ),
+                    child: child,
+                  ),
                 ),
               );
             },
@@ -74,6 +86,7 @@ class _CircularBorderButtonState extends State<CircularBorderButton> {
               final v when v.contains(WidgetState.hovered) => 1.2,
               _ => 1,
             },
+            child: widget.child,
           ),
         );
       },

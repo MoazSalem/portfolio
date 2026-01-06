@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart' show PointerDeviceKind;
 import 'package:flutter/material.dart';
 import 'package:motor/motor.dart';
 import 'package:portfolio/core/theme/durations.dart';
@@ -23,7 +24,7 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
   late final AnimationController _controller;
   late final Animation<int> _animation;
   bool _isAnimationDone = false;
-  final _stateController = WidgetStatesController();
+  final _statesController = WidgetStatesController();
 
   // Define the listener function
   void _onAnimationCompleted(AnimationStatus status) {
@@ -64,7 +65,7 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
     // Just in case the widget is removed *before* the animation finishes
     _controller.removeStatusListener(_onAnimationCompleted);
     _controller.dispose();
-    _stateController.dispose();
+    _statesController.dispose();
     super.dispose();
   }
 
@@ -86,27 +87,35 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
             ),
             child: _isAnimationDone
                 ? ValueListenableBuilder(
-                    valueListenable: _stateController,
+                    valueListenable: _statesController,
                     builder: (context, _, child) {
                       return SingleMotionBuilder(
                         motion: const CupertinoMotion.smooth(),
                         builder: (context, value, child) {
                           return MouseRegion(
-                            onHover: (event) => _stateController.update(
-                              WidgetState.hovered,
-                              true,
-                            ),
-                            onExit: (event) => _stateController.update(
-                              WidgetState.hovered,
-                              false,
-                            ),
+                            onHover: (hover) {
+                              if (hover.kind == PointerDeviceKind.mouse) {
+                                _statesController.update(
+                                  WidgetState.hovered,
+                                  true,
+                                );
+                              }
+                            },
+                            onExit: (hover) {
+                              if (hover.kind == PointerDeviceKind.mouse) {
+                                _statesController.update(
+                                  WidgetState.hovered,
+                                  false,
+                                );
+                              }
+                            },
                             child: Text(
                               "${widget.numericalDescription.value}",
                               textAlign: TextAlign.center,
                               style: theme.textTheme.headlineMedium?.copyWith(
                                 fontSize: value,
                                 color:
-                                    _stateController.value.contains(
+                                    _statesController.value.contains(
                                       WidgetState.hovered,
                                     )
                                     ? theme.colorScheme.primary
@@ -115,7 +124,7 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
                             ),
                           );
                         },
-                        value: switch (_stateController.value) {
+                        value: switch (_statesController.value) {
                           final v when v.contains(WidgetState.hovered) =>
                             theme.textTheme.headlineLarge!.fontSize!,
                           _ => theme.textTheme.headlineMedium!.fontSize!,

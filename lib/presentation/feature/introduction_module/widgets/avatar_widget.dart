@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart' show PointerDeviceKind;
 import 'package:flutter/material.dart';
 import 'package:motor/motor.dart';
 import 'package:portfolio/core/theme/sizes.dart';
@@ -48,18 +49,23 @@ class _AvatarWidgetState extends State<AvatarWidget>
             ? AppSizes.userAvatarRadiusSmall
             : AppSizes.userAvatarRadiusBig,
         backgroundImage: AssetImage(widget.avatarUrl),
-        backgroundColor: Colors.white,
+        backgroundColor: theme.colorScheme.primaryContainer,
       ),
       builder: (context, child) {
         return SingleMotionBuilder(
           motion: const CupertinoMotion.smooth(),
           builder: (context, value, child) {
             return MouseRegion(
-              onHover: (hovered) {
-                _statesController.update(WidgetState.hovered, true);
+              onHover: (hover) {
+                if (hover.kind == PointerDeviceKind.mouse) {
+                  _statesController.update(WidgetState.hovered, true);
+                }
               },
-              onExit: (hovered) =>
-                  _statesController.update(WidgetState.hovered, false),
+              onExit: (hover) {
+                if (hover.kind == PointerDeviceKind.mouse) {
+                  _statesController.update(WidgetState.hovered, false);
+                }
+              },
               child: Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle, // Ensures the shadow is circular

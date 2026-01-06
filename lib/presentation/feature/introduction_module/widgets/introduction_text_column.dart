@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart' show PointerDeviceKind;
 import 'package:flutter/material.dart';
 import 'package:motor/motor.dart';
 import 'package:portfolio/core/theme/sizes.dart';
@@ -22,12 +23,12 @@ class IntroductionTextColumn extends StatefulWidget {
 }
 
 class _IntroductionTextColumnState extends State<IntroductionTextColumn> {
-  final _stateController = WidgetStatesController();
+  final _statesController = WidgetStatesController();
 
   @override
   void deactivate() {
     super.deactivate();
-    _stateController.dispose();
+    _statesController.dispose();
   }
 
   @override
@@ -52,19 +53,25 @@ class _IntroductionTextColumnState extends State<IntroductionTextColumn> {
         ),
         // User name
         ValueListenableBuilder(
-          valueListenable: _stateController,
+          valueListenable: _statesController,
           builder: (context, _, child) {
             return SingleMotionBuilder(
               motion: const CupertinoMotion.smooth(),
               builder: (context, value, child) {
-                final bool isHovered = _stateController.value.contains(
+                final bool isHovered = _statesController.value.contains(
                   WidgetState.hovered,
                 );
                 return MouseRegion(
-                  onHover: (event) =>
-                      _stateController.update(WidgetState.hovered, true),
-                  onExit: (event) =>
-                      _stateController.update(WidgetState.hovered, false),
+                  onHover: (hover) {
+                    if (hover.kind == PointerDeviceKind.mouse) {
+                      _statesController.update(WidgetState.hovered, true);
+                    }
+                  },
+                  onExit: (hover) {
+                    if (hover.kind == PointerDeviceKind.mouse) {
+                      _statesController.update(WidgetState.hovered, false);
+                    }
+                  },
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
                     color: isHovered
@@ -87,7 +94,7 @@ class _IntroductionTextColumnState extends State<IntroductionTextColumn> {
                   ),
                 );
               },
-              value: switch (_stateController.value) {
+              value: switch (_statesController.value) {
                 final v when v.contains(WidgetState.hovered) => AppSizes.p8,
                 _ => 0,
               },

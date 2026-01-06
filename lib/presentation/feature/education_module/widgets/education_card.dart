@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart' show PointerDeviceKind;
 import 'package:flutter/material.dart';
 import 'package:motor/motor.dart';
 import 'package:portfolio/core/theme/sizes.dart';
@@ -42,10 +43,14 @@ class _EducationCardState extends State<EducationCard> {
             );
             return MouseRegion(
               onHover: (hover) {
-                _statesController.update(WidgetState.hovered, true);
+                if (hover.kind == PointerDeviceKind.mouse) {
+                  _statesController.update(WidgetState.hovered, true);
+                }
               },
               onExit: (hover) {
-                _statesController.update(WidgetState.hovered, false);
+                if (hover.kind == PointerDeviceKind.mouse) {
+                  _statesController.update(WidgetState.hovered, false);
+                }
               },
               child: ConstrainedBox(
                 constraints: const BoxConstraints(
