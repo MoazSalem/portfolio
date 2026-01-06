@@ -31,24 +31,26 @@ class _EducationModuleState extends State<EducationModule>
         child: Column(
           spacing: AppSizes.p20,
           children: [
-            Row(
-              spacing: AppSizes.p20,
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Education",
-                  style: theme.textTheme.headlineSmall?.copyWith(
-                    color: theme.colorScheme.onSurface,
+            FittedBox(
+              child: Row(
+                spacing: AppSizes.p20,
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Education",
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      color: theme.colorScheme.onSurface,
+                    ),
                   ),
-                ),
-                Icon(
-                  Icons.school,
-                  color: theme.colorScheme.primary,
-                  size: AppSizes.iconSizeXLarge,
-                ),
-              ],
+                  Icon(
+                    Icons.school,
+                    color: theme.colorScheme.primary,
+                    size: AppSizes.iconSizeXLarge,
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: AppSizes.p20),
             EducationCard(

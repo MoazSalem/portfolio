@@ -32,25 +32,27 @@ class _WorkModuleState extends State<WorkModule>
         child: Column(
           spacing: AppSizes.p20,
           children: [
-            Row(
-              spacing: AppSizes.p20,
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Work Experience",
-                  style: theme.textTheme.headlineSmall?.copyWith(
-                    height: 1,
-                    color: theme.colorScheme.onSurface,
+            FittedBox(
+              child: Row(
+                spacing: AppSizes.p20,
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Work Experience",
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      height: 1,
+                      color: theme.colorScheme.onSurface,
+                    ),
                   ),
-                ),
-                Icon(
-                  Icons.work,
-                  color: theme.colorScheme.primary,
-                  size: AppSizes.iconSizeXLarge,
-                ),
-              ],
+                  Icon(
+                    Icons.work,
+                    color: theme.colorScheme.primary,
+                    size: AppSizes.iconSizeXLarge,
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: AppSizes.p20),
             Column(

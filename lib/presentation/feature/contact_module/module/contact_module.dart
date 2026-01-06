@@ -35,21 +35,23 @@ class _ContactModuleState extends State<ContactModule>
         ),
         child: Column(
           children: [
-            RichText(
-              text: TextSpan(
-                text: "Let's ",
-                style: theme.textTheme.headlineSmall?.copyWith(
-                  height: 1,
-                  color: theme.colorScheme.onSurface,
-                ),
-                children: [
-                  TextSpan(
-                    text: "Connect",
-                    style: theme.textTheme.headlineSmall?.copyWith(
-                      color: theme.colorScheme.primary,
-                    ),
+            FittedBox(
+              child: RichText(
+                text: TextSpan(
+                  text: "Let's ",
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    height: 1,
+                    color: theme.colorScheme.onSurface,
                   ),
-                ],
+                  children: [
+                    TextSpan(
+                      text: "Connect",
+                      style: theme.textTheme.headlineSmall?.copyWith(
+                        color: theme.colorScheme.primary,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: AppSizes.p40, width: double.infinity),

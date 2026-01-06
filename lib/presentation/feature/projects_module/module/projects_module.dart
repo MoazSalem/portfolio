@@ -94,21 +94,23 @@ class ProjectsHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return RichText(
-      text: TextSpan(
-        text: "Some of My ",
-        style: theme.textTheme.headlineSmall?.copyWith(
-          height: 1,
-          color: theme.colorScheme.onSurface,
-        ),
-        children: [
-          TextSpan(
-            text: "Projects",
-            style: theme.textTheme.headlineSmall?.copyWith(
-              color: theme.colorScheme.primary,
-            ),
+    return FittedBox(
+      child: RichText(
+        text: TextSpan(
+          text: "Some of My ",
+          style: theme.textTheme.headlineSmall?.copyWith(
+            height: 1,
+            color: theme.colorScheme.onSurface,
           ),
-        ],
+          children: [
+            TextSpan(
+              text: "Projects",
+              style: theme.textTheme.headlineSmall?.copyWith(
+                color: theme.colorScheme.primary,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
