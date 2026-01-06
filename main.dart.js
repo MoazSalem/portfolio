@@ -72515,7 +72515,7 @@ j=t.F
 j=A.c([m,B.Mt,B.QX,B.cU,new A.f3(new A.abL(f),A.qF(A.c([o,B.Mr,A.ca(k,e,e,n==null?e:n.cv(r),e)],j),B.a0,B.a1,B.aD,0),e,e,e,e),B.fW],j)
 i=f.a.d.length-1
 h=J.hg(i,t.l)
-for(o=f.a,g=0;g<i;++g)h[g]=new A.f3(new A.abM(f,g),new A.r2("images/svgs/"+o.d[g].a.toLowerCase()+".svg.vec",20,r,e),e,e,e,e)
+for(o=f.a,g=0;g<i;++g)h[g]=new A.f3(new A.abM(f,g),new A.r2("assets/images/svgs/"+o.d[g].a.toLowerCase()+".svg.vec",20,r,e),e,e,e,e)
 j.push(A.rs(B.at,h,B.cs,B.at,10,10))
 j.push(B.cU)
 p=p.ax
@@ -72691,7 +72691,7 @@ this.f9()}}
 A.G2.prototype={
 I(a){var s,r,q,p,o,n=null,m=A.ac(a),l=J.hg(3,t.l)
 for(s=this.c,r=m.ax.b,q=m.ok.ax,p=0;p<3;++p){if(p===0)o=A.ca("View Resume",n,n,q==null?n:q.cv(r),n)
-else o=new A.r2("images/svgs/"+s[p].a.toLowerCase()+".svg.vec",20,r,n)
+else o=new A.r2("assets/images/svgs/"+s[p].a.toLowerCase()+".svg.vec",20,r,n)
 l[p]=new A.f3(new A.Xo(this,p),o,n,n,n,n)}return A.rs(B.at,l,B.cs,B.at,10,10)}}
 A.Xo.prototype={
 $0(){return v.G.window.open(this.a.c[this.b].d)},
@@ -73010,7 +73010,7 @@ m=A.c([],o)
 if(c.a.c.r!=null){l=J.hg(1,t.l)
 for(k=q.b,j=r.ok.c,i=0;i<1;++i){h=A.c([],o)
 g=c.a.c.r[i]
-if(g.c!=null)h.push(new A.r2("images/svgs/"+g.a+".svg.vec",14,k,d))
+if(g.c!=null)h.push(new A.r2("assets/images/svgs/"+g.a+".svg.vec",14,k,d))
 g=c.a.c.r[i]
 f=g.b
 g=f==null?g.a.toUpperCase():f
