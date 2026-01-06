@@ -20,6 +20,7 @@ class AppSizes {
   static const double iconSizeSmall = 14;
   static const double iconSize = 20;
   static const double iconSizeLarge = 30;
+  static const double iconSizeXLarge = 40;
   static const double defaultLinkHeight = 40;
   static const double defaultLinkWidth = 8;
   static const double projectContainerMaxCrossAxisExtent = 600;

@@ -38,11 +38,14 @@ class _ContactModuleState extends State<ContactModule>
             RichText(
               text: TextSpan(
                 text: "Let's ",
-                style: theme.textTheme.titleLarge?.copyWith(height: 1),
+                style: theme.textTheme.headlineSmall?.copyWith(
+                  height: 1,
+                  color: theme.colorScheme.onSurface,
+                ),
                 children: [
                   TextSpan(
                     text: "Connect",
-                    style: theme.textTheme.titleLarge?.copyWith(
+                    style: theme.textTheme.headlineSmall?.copyWith(
                       color: theme.colorScheme.primary,
                     ),
                   ),
@@ -50,8 +53,12 @@ class _ContactModuleState extends State<ContactModule>
               ),
             ),
             const SizedBox(height: AppSizes.p40, width: double.infinity),
-            const Text(
+            Text(
               "How did you reach here? What are you looking for? did you like any of my projects? I would love to hear from you over email!",
+              style: theme.textTheme.displayMedium?.copyWith(
+                color: theme.colorScheme.onSurface,
+                fontWeight: FontWeight.w500,
+              ),
             ),
             const SizedBox(height: AppSizes.p40),
             CircularBorderButton(
@@ -98,7 +105,7 @@ class _ContactModuleState extends State<ContactModule>
                 text: "Made with ",
                 style: theme.textTheme.labelSmall?.copyWith(
                   height: 1,
-                  color: Colors.white70,
+                  color: theme.colorScheme.onSurface,
                 ),
                 children: [
                   TextSpan(

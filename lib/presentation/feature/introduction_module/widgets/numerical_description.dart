@@ -126,7 +126,7 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
                                         WidgetState.hovered,
                                       )
                                       ? theme.colorScheme.primary
-                                      : null,
+                                      : theme.colorScheme.onSurface,
                                 ),
                               ),
                             ),
@@ -146,7 +146,9 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
                       return Text(
                         "${_animation.value}",
                         textAlign: TextAlign.center,
-                        style: theme.textTheme.headlineMedium,
+                        style: theme.textTheme.headlineMedium?.copyWith(
+                          color: theme.colorScheme.onSurface,
+                        ),
                       );
                     },
                   ),
@@ -162,7 +164,9 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
             textAlign: MediaQuery.sizeOf(context).width < 475
                 ? TextAlign.center
                 : TextAlign.start,
-            style: theme.textTheme.labelSmall?.copyWith(color: Colors.white70),
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: theme.colorScheme.onSurface.withAlpha(180),
+            ),
           ),
         ),
       ],

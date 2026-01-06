@@ -94,6 +94,7 @@ class _EducationCardState extends State<EducationCard> {
                               Text(
                                 widget.firstText,
                                 style: theme.textTheme.labelMedium?.copyWith(
+                                  color: theme.colorScheme.onSurface,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -105,7 +106,11 @@ class _EducationCardState extends State<EducationCard> {
                               ),
                               Text(
                                 widget.thirdText,
-                                style: const TextStyle(color: Colors.white70),
+                                style: TextStyle(
+                                  color: theme.colorScheme.onSurface.withAlpha(
+                                    180,
+                                  ),
+                                ),
                               ),
                             ],
                           ),

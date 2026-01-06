@@ -86,6 +86,7 @@ class _WorkCardState extends State<WorkCard> {
                               Text(
                                 widget.workExperience.position,
                                 style: theme.textTheme.labelLarge?.copyWith(
+                                  color: theme.colorScheme.onSurface,
                                   fontWeight: FontWeight.bold,
                                   height: 1.2,
                                 ),
@@ -100,7 +101,9 @@ class _WorkCardState extends State<WorkCard> {
                               Text(
                                 "${widget.workExperience.startDate} - ${widget.workExperience.endDate}",
                                 style: theme.textTheme.labelSmall?.copyWith(
-                                  color: Colors.white70,
+                                  color: theme.colorScheme.onSurface.withAlpha(
+                                    180,
+                                  ),
                                 ),
                               ),
                               const SizedBox(height: AppSizes.p4),
@@ -114,12 +117,24 @@ class _WorkCardState extends State<WorkCard> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      const Text("•  "),
+                                      Text(
+                                        "•  ",
+                                        style: theme.textTheme.labelSmall
+                                            ?.copyWith(
+                                              color:
+                                                  theme.colorScheme.onSurface,
+                                            ),
+                                      ),
                                       Expanded(
                                         child: Text(
                                           widget
                                               .workExperience
                                               .responsibilities![index],
+                                          style: theme.textTheme.bodyMedium
+                                              ?.copyWith(
+                                                color:
+                                                    theme.colorScheme.onSurface,
+                                              ),
                                         ),
                                       ),
                                     ],

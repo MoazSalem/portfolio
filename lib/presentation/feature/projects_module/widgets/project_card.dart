@@ -38,7 +38,7 @@ class _ProjectCardState extends State<ProjectCard> {
             _statesController.value.contains(WidgetState.pressed);
         // set the color based on the hover state
         final Color color = _expand
-            ? theme.colorScheme.onPrimaryFixed
+            ? theme.colorScheme.primaryContainer
             : theme.colorScheme.surface;
         return SingleMotionBuilder(
           motion: const CupertinoMotion.smooth(),
@@ -135,6 +135,8 @@ class _ProjectCardState extends State<ProjectCard> {
                                         widget.project.externalLinks![i].url,
                                       ),
                                       paddingValue: AppSizes.p8,
+                                      backgroundColor:
+                                          theme.colorScheme.primary,
                                       color: theme.colorScheme.primary,
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -153,7 +155,8 @@ class _ProjectCardState extends State<ProjectCard> {
                                                     .externalLinks![i]
                                                     .name,
                                               ),
-                                              color: theme.colorScheme.primary,
+                                              color:
+                                                  theme.colorScheme.onPrimary,
                                             ),
                                           Text(
                                             widget
@@ -167,8 +170,9 @@ class _ProjectCardState extends State<ProjectCard> {
                                                     .toUpperCase(),
                                             style: theme.textTheme.displaySmall
                                                 ?.copyWith(
-                                                  color:
-                                                      theme.colorScheme.primary,
+                                                  color: theme
+                                                      .colorScheme
+                                                      .onPrimary,
                                                 ),
                                           ),
                                         ],
@@ -181,12 +185,16 @@ class _ProjectCardState extends State<ProjectCard> {
 
                               Text(
                                 widget.project.name,
-                                style: theme.textTheme.titleMedium,
+                                style: theme.textTheme.titleMedium?.copyWith(
+                                  color: theme.colorScheme.onSurface,
+                                ),
                               ),
                               Text(
                                 widget.project.description ?? '',
                                 style: theme.textTheme.labelSmall?.copyWith(
-                                  color: Colors.white70,
+                                  color: theme.colorScheme.onSurface.withAlpha(
+                                    180,
+                                  ),
                                 ),
                                 maxLines: _expand ? 10 : 5,
                                 overflow: TextOverflow.ellipsis,
@@ -200,7 +208,8 @@ class _ProjectCardState extends State<ProjectCard> {
                                     widget.project.tags!.length,
                                     (i) => CircularBorderButton(
                                       paddingValue: AppSizes.p8,
-                                      color: theme.colorScheme.outline,
+                                      color: theme.colorScheme.onSurface
+                                          .withAlpha(180),
                                       child: Text(
                                         widget.project.tags![i],
                                         style: theme.textTheme.displaySmall

@@ -43,13 +43,17 @@ class _IntroductionTextColumnState extends State<IntroductionTextColumn> {
         // User title
         Text(
           widget.introductionData.title,
-          style: theme.textTheme.headlineSmall,
+          style: theme.textTheme.labelLarge?.copyWith(
+            color: theme.colorScheme.onSurface.withAlpha(180),
+            fontWeight: FontWeight.w400,
+          ),
         ),
-        const SizedBox(height: AppSizes.p10),
         Text(
           'Hello I\'m',
           textAlign: TextAlign.center,
-          style: theme.textTheme.headlineLarge,
+          style: theme.textTheme.headlineLarge?.copyWith(
+            color: theme.colorScheme.onSurface,
+          ),
         ),
         // User name
         ValueListenableBuilder(
@@ -123,7 +127,9 @@ class _IntroductionTextColumnState extends State<IntroductionTextColumn> {
             maxLines: AppSizes.userDescriptionMaxLines,
             overflow: TextOverflow.ellipsis,
             widget.introductionData.description,
-            style: theme.textTheme.bodyMedium?.copyWith(color: Colors.white70),
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onSurface.withAlpha(180),
+            ),
           ),
         ),
         const SizedBox(height: AppSizes.p40),

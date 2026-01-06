@@ -65,10 +65,16 @@ class _ProjectsModuleState extends State<ProjectsModule> {
                     mainAxisSize: MainAxisSize.min,
                     spacing: AppSizes.p4,
                     children: [
-                      Text("See ${_isExpanded ? "Less" : "More"}"),
+                      Text(
+                        "See ${_isExpanded ? "Less" : "More"}",
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.colorScheme.onSurface,
+                        ),
+                      ),
                       Icon(
                         _isExpanded ? Icons.arrow_upward : Icons.arrow_downward,
                         size: AppSizes.iconSizeSmall,
+                        color: theme.colorScheme.onSurface,
                       ),
                     ],
                   ),
@@ -91,11 +97,14 @@ class ProjectsHeader extends StatelessWidget {
     return RichText(
       text: TextSpan(
         text: "Some of My ",
-        style: theme.textTheme.titleLarge?.copyWith(height: 1),
+        style: theme.textTheme.headlineSmall?.copyWith(
+          height: 1,
+          color: theme.colorScheme.onSurface,
+        ),
         children: [
           TextSpan(
             text: "Projects",
-            style: theme.textTheme.titleLarge?.copyWith(
+            style: theme.textTheme.headlineSmall?.copyWith(
               color: theme.colorScheme.primary,
             ),
           ),

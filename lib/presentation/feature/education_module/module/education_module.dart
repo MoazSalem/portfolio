@@ -39,12 +39,14 @@ class _EducationModuleState extends State<EducationModule>
               children: [
                 Text(
                   "Education",
-                  style: theme.textTheme.titleLarge?.copyWith(height: 1),
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    color: theme.colorScheme.onSurface,
+                  ),
                 ),
                 Icon(
                   Icons.school,
                   color: theme.colorScheme.primary,
-                  size: AppSizes.iconSizeLarge,
+                  size: AppSizes.iconSizeXLarge,
                 ),
               ],
             ),

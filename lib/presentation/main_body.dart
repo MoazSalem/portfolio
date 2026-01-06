@@ -221,7 +221,12 @@ class _MainBodyState extends State<MainBody> {
                                                     _modules[index],
                                                     style: theme
                                                         .textTheme
-                                                        .labelSmall,
+                                                        .labelSmall
+                                                        ?.copyWith(
+                                                          color: theme
+                                                              .colorScheme
+                                                              .onSurface,
+                                                        ),
                                                   ),
                                                 ),
                                               ),
@@ -247,7 +252,12 @@ class _MainBodyState extends State<MainBody> {
                                                     _modules[index],
                                                     style: theme
                                                         .textTheme
-                                                        .labelSmall,
+                                                        .labelSmall
+                                                        ?.copyWith(
+                                                          color: theme
+                                                              .colorScheme
+                                                              .onSurface,
+                                                        ),
                                                   ),
                                                 ),
                                               ),

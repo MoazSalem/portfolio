@@ -40,12 +40,15 @@ class _WorkModuleState extends State<WorkModule>
               children: [
                 Text(
                   "Work Experience",
-                  style: theme.textTheme.titleLarge?.copyWith(height: 1),
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    height: 1,
+                    color: theme.colorScheme.onSurface,
+                  ),
                 ),
                 Icon(
                   Icons.work,
                   color: theme.colorScheme.primary,
-                  size: AppSizes.iconSizeLarge,
+                  size: AppSizes.iconSizeXLarge,
                 ),
               ],
             ),
@@ -94,10 +97,16 @@ class _WorkModuleState extends State<WorkModule>
                     mainAxisSize: MainAxisSize.min,
                     spacing: AppSizes.p4,
                     children: [
-                      Text("See ${_isExpanded ? "Less" : "More"}"),
+                      Text(
+                        "See ${_isExpanded ? "Less" : "More"}",
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.colorScheme.onSurface,
+                        ),
+                      ),
                       Icon(
                         _isExpanded ? Icons.arrow_upward : Icons.arrow_downward,
                         size: AppSizes.iconSizeSmall,
+                        color: theme.colorScheme.onSurface,
                       ),
                     ],
                   ),
