@@ -20,8 +20,8 @@ class AppTheme {
 
   static final ThemeData lightTheme = ThemeData(
     colorScheme: ColorScheme.fromSeed(
-      primary: const Color(0xFF448AFF),
-      seedColor: const Color(0xFF448AFF),
+      primary: const Color(0xFF16C47E),
+      seedColor: const Color(0xFF16C47E),
       brightness: Brightness.light,
     ),
     fontFamily: 'Barlow',

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/core/constants/user.dart';
 import 'package:portfolio/core/theme/durations.dart';
 import 'package:portfolio/core/theme/sizes.dart';
+import 'package:portfolio/core/theme/theme_controller.dart';
 import 'package:portfolio/presentation/feature/education_module/module/education_module.dart';
 import 'package:portfolio/presentation/feature/independent_animations/intro_animation.dart';
 import 'package:portfolio/presentation/feature/introduction_module/module/introduction_module.dart';
@@ -87,8 +88,8 @@ class _MainBodyState extends State<MainBody> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _showNavbar = MediaQuery.sizeOf(context).width > 600;
-    _isSmallScreen = MediaQuery.sizeOf(context).width < 600;
+    _showNavbar = MediaQuery.sizeOf(context).width > 700;
+    _isSmallScreen = MediaQuery.sizeOf(context).width < 700;
   }
 
   @override
@@ -184,8 +185,7 @@ class _MainBodyState extends State<MainBody> {
                           switchOutCurve: Curves.easeOutCubic,
                           child: _showNavbar
                               ? Card(
-                                  color: theme.colorScheme.surfaceContainer
-                                      .withAlpha(160),
+                                  color: theme.colorScheme.surfaceContainer,
                                   shape: RoundedRectangleBorder(
                                     side: BorderSide(
                                       color: theme.colorScheme.outline,
@@ -269,23 +269,49 @@ class _MainBodyState extends State<MainBody> {
                         ),
                       ),
 
-                      // Hamburger menu button for the navbar
+                      // Hamburger menu button for the navbar and theme switcher
                       AnimatedPositioned(
                         duration: const Duration(milliseconds: 200),
                         top: AppSizes.p22,
                         right: AppSizes.p16,
-                        child: CircularBorderButton(
-                          color: theme.colorScheme.outline,
-                          backgroundColor: theme.colorScheme.surfaceContainer
-                              .withAlpha(180),
-                          paddingValue: AppSizes.p12,
-                          onTap: () => setState(() {
-                            _showNavbar = !_showNavbar;
-                          }),
-                          child: Icon(
-                            Icons.menu,
-                            color: theme.colorScheme.onSurface,
-                          ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ValueListenableBuilder(
+                              valueListenable:
+                                  ThemeController.instance.themeMode,
+                              builder: (context, value, child) {
+                                return CircularBorderButton(
+                                  color: theme.colorScheme.outline,
+                                  backgroundColor:
+                                      theme.colorScheme.surfaceContainer,
+                                  paddingValue: AppSizes.p12,
+                                  onTap: () =>
+                                      ThemeController.instance.toggleTheme(),
+                                  child: Icon(
+                                    value == ThemeMode.light
+                                        ? Icons.dark_mode
+                                        : Icons.light_mode,
+                                    color: theme.colorScheme.onSurface,
+                                  ),
+                                );
+                              },
+                            ),
+                            const SizedBox(width: AppSizes.p16),
+                            CircularBorderButton(
+                              color: theme.colorScheme.outline,
+                              backgroundColor:
+                                  theme.colorScheme.surfaceContainer,
+                              paddingValue: AppSizes.p12,
+                              onTap: () => setState(() {
+                                _showNavbar = !_showNavbar;
+                              }),
+                              child: Icon(
+                                Icons.menu,
+                                color: theme.colorScheme.onSurface,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
