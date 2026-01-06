@@ -25,6 +25,7 @@ class _MainBodyState extends State<MainBody> {
   // A state variable to control visibility
   bool _showAnimation = true;
   bool _showNavbar = true;
+  bool _isSmallScreen = false;
 
   // for the navbar
   final List<String> _modules = [
@@ -86,7 +87,7 @@ class _MainBodyState extends State<MainBody> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _showNavbar = MediaQuery.sizeOf(context).width > 600;
+    _isSmallScreen = MediaQuery.sizeOf(context).width < 600;
   }
 
   @override
@@ -170,11 +171,12 @@ class _MainBodyState extends State<MainBody> {
                           ),
                         ),
                       ),
-                      // Navbar
+
+                      // Navigation bar
                       Positioned(
-                        top: AppSizes.p16,
+                        top: _isSmallScreen ? 80 : AppSizes.p16,
                         right: AppSizes.p16,
-                        left: AppSizes.p16,
+                        left: _isSmallScreen ? null : AppSizes.p16,
                         child: AnimatedSwitcher(
                           duration: const Duration(milliseconds: 500),
                           switchInCurve: Curves.easeInOut,
@@ -194,42 +196,72 @@ class _MainBodyState extends State<MainBody> {
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(AppSizes.p8),
-                                    child: Wrap(
-                                      spacing: AppSizes.p8,
-                                      children: List.generate(
-                                        _modules.length,
-                                        (index) => CircularBorderButton(
-                                          color: Colors.transparent,
-                                          paddingValue: AppSizes.p8,
-                                          onTap: () => _scrollToModule(
-                                            _keys[index],
-                                            scrollController,
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: AppSizes.p4,
+                                    child: _isSmallScreen
+                                        ? Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            spacing: AppSizes.p8,
+                                            children: List.generate(
+                                              _modules.length,
+                                              (index) => CircularBorderButton(
+                                                color: Colors.transparent,
+                                                paddingValue: AppSizes.p8,
+                                                onTap: () => _scrollToModule(
+                                                  _keys[index],
+                                                  scrollController,
+                                                ),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.symmetric(
+                                                        horizontal: AppSizes.p4,
+                                                      ),
+                                                  child: Text(
+                                                    _modules[index],
+                                                    style: theme
+                                                        .textTheme
+                                                        .labelSmall,
+                                                  ),
+                                                ),
+                                              ),
                                             ),
-                                            child: Text(
-                                              _modules[index],
-                                              style: theme.textTheme.labelSmall,
+                                          )
+                                        : Wrap(
+                                            spacing: AppSizes.p8,
+                                            children: List.generate(
+                                              _modules.length,
+                                              (index) => CircularBorderButton(
+                                                color: Colors.transparent,
+                                                paddingValue: AppSizes.p8,
+                                                onTap: () => _scrollToModule(
+                                                  _keys[index],
+                                                  scrollController,
+                                                ),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.symmetric(
+                                                        horizontal: AppSizes.p4,
+                                                      ),
+                                                  child: Text(
+                                                    _modules[index],
+                                                    style: theme
+                                                        .textTheme
+                                                        .labelSmall,
+                                                  ),
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ),
-                                    ),
                                   ),
                                 )
                               : const SizedBox.shrink(),
                         ),
                       ),
-                      // Hamburger menu button
+
+                      // Hamburger menu button for the navbar
                       AnimatedPositioned(
                         duration: const Duration(milliseconds: 200),
-                        top:
-                            (MediaQuery.sizeOf(context).width < 550 &&
-                                _showNavbar)
-                            ? 80
-                            : 22,
+                        top: AppSizes.p22,
                         right: AppSizes.p16,
                         child: CircularBorderButton(
                           color: theme.colorScheme.outline,
