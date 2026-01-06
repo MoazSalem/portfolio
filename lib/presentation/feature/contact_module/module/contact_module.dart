@@ -114,6 +114,12 @@ class _ContactModuleState extends State<ContactModule>
                       color: theme.colorScheme.primary,
                     ),
                   ),
+                  TextSpan(
+                    text: "  © 2026",
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: theme.colorScheme.outline,
+                    ),
+                  ),
                 ],
               ),
             ),

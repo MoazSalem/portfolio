@@ -24,7 +24,7 @@ class MainBody extends StatefulWidget {
 class _MainBodyState extends State<MainBody> {
   // A state variable to control visibility
   bool _showAnimation = true;
-  bool _showNavbar = true;
+  bool _showNavbar = false;
   bool _isSmallScreen = false;
 
   // for the navbar
@@ -87,6 +87,7 @@ class _MainBodyState extends State<MainBody> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _showNavbar = MediaQuery.sizeOf(context).width > 600;
     _isSmallScreen = MediaQuery.sizeOf(context).width < 600;
   }
 
