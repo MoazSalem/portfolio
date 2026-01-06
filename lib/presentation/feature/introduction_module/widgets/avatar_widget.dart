@@ -66,33 +66,39 @@ class _AvatarWidgetState extends State<AvatarWidget>
                   _statesController.update(WidgetState.hovered, false);
                 }
               },
-              child: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle, // Ensures the shadow is circular
-                  boxShadow: [
-                    BoxShadow(
-                      color: Theme.of(context).colorScheme.primary.withAlpha(
-                        (value * 60).toInt(),
-                      ), // Shadow color
-                      blurRadius: value * 20,
-                      spreadRadius: value * 16,
-                    ),
-                  ],
+              child: GestureDetector(
+                onTap: () => _statesController.update(
+                  WidgetState.hovered,
+                  !_statesController.value.contains(WidgetState.hovered),
                 ),
-                // border animation
-                child: OrbitingExpandingBorder(
-                  color: theme.colorScheme.primary,
-                  radius: widget.isPortrait
-                      ? AppSizes.userAvatarRadiusSmall
-                      : AppSizes.userAvatarRadiusBig,
-                  speed: Duration(
-                    seconds:
-                        _statesController.value.contains(WidgetState.hovered)
-                        ? 5
-                        : 10,
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle, // Ensures the shadow is circular
+                    boxShadow: [
+                      BoxShadow(
+                        color: Theme.of(context).colorScheme.primary.withAlpha(
+                          (value * 60).toInt(),
+                        ), // Shadow color
+                        blurRadius: value * 20,
+                        spreadRadius: value * 16,
+                      ),
+                    ],
                   ),
-                  lineWidth: value * 5,
-                  child: child,
+                  // border animation
+                  child: OrbitingExpandingBorder(
+                    color: theme.colorScheme.primary,
+                    radius: widget.isPortrait
+                        ? AppSizes.userAvatarRadiusSmall
+                        : AppSizes.userAvatarRadiusBig,
+                    speed: Duration(
+                      seconds:
+                          _statesController.value.contains(WidgetState.hovered)
+                          ? 5
+                          : 10,
+                    ),
+                    lineWidth: value * 5,
+                    child: child,
+                  ),
                 ),
               ),
             );

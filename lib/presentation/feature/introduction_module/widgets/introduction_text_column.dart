@@ -72,22 +72,28 @@ class _IntroductionTextColumnState extends State<IntroductionTextColumn> {
                       _statesController.update(WidgetState.hovered, false);
                     }
                   },
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    color: isHovered
-                        ? theme.colorScheme.primary
-                        : Colors.transparent,
-                    curve: Curves.easeOut,
-                    child: AnimatedPadding(
-                      padding: EdgeInsets.all(value),
+                  child: GestureDetector(
+                    onTap: () => _statesController.update(
+                      WidgetState.hovered,
+                      !_statesController.value.contains(WidgetState.hovered),
+                    ),
+                    child: AnimatedContainer(
                       duration: const Duration(milliseconds: 200),
-                      child: Text(
-                        widget.introductionData.name,
-                        textAlign: TextAlign.center,
-                        style: theme.textTheme.headlineLarge?.copyWith(
-                          color: isHovered
-                              ? theme.colorScheme.onPrimary
-                              : theme.colorScheme.primary,
+                      color: isHovered
+                          ? theme.colorScheme.primary
+                          : Colors.transparent,
+                      curve: Curves.easeOut,
+                      child: AnimatedPadding(
+                        padding: EdgeInsets.all(value),
+                        duration: const Duration(milliseconds: 200),
+                        child: Text(
+                          widget.introductionData.name,
+                          textAlign: TextAlign.center,
+                          style: theme.textTheme.headlineLarge?.copyWith(
+                            color: isHovered
+                                ? theme.colorScheme.onPrimary
+                                : theme.colorScheme.primary,
+                          ),
                         ),
                       ),
                     ),

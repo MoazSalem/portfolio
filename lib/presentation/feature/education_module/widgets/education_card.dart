@@ -52,57 +52,63 @@ class _EducationCardState extends State<EducationCard> {
                   _statesController.update(WidgetState.hovered, false);
                 }
               },
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(
-                  maxWidth: AppSizes.educationContainerMaxWidth,
-                  minWidth: AppSizes.educationContainerMaxWidth,
+              child: GestureDetector(
+                onTap: () => _statesController.update(
+                  WidgetState.hovered,
+                  !_statesController.value.contains(WidgetState.hovered),
                 ),
-                child: Padding(
-                  padding: EdgeInsets.all(value),
-                  child: Material(
-                    color: isHovered
-                        ? theme.colorScheme.primaryContainer
-                        : theme.colorScheme.surfaceContainerHighest,
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        color: isHovered
-                            ? theme.colorScheme.primary
-                            : theme.colorScheme.outline,
-                        width: AppSizes.outlineWidth,
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(
+                    maxWidth: AppSizes.educationContainerMaxWidth,
+                    minWidth: AppSizes.educationContainerMaxWidth,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(value),
+                    child: Material(
+                      color: isHovered
+                          ? theme.colorScheme.primaryContainer
+                          : theme.colorScheme.surfaceContainerHighest,
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                          color: isHovered
+                              ? theme.colorScheme.primary
+                              : theme.colorScheme.outline,
+                          width: AppSizes.outlineWidth,
+                        ),
+                        borderRadius: BorderRadius.circular(
+                          AppSizes.borderRadius,
+                        ),
                       ),
-                      borderRadius: BorderRadius.circular(
-                        AppSizes.borderRadius,
-                      ),
-                    ),
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(
-                        AppSizes.borderRadius,
-                      ),
-                      onTap: widget.onTap,
-                      child: Padding(
-                        padding: const EdgeInsets.all(AppSizes.p30),
-                        child: Column(
-                          spacing: AppSizes.p4,
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              widget.firstText,
-                              style: theme.textTheme.labelMedium?.copyWith(
-                                fontWeight: FontWeight.bold,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(
+                          AppSizes.borderRadius,
+                        ),
+                        onTap: widget.onTap,
+                        child: Padding(
+                          padding: const EdgeInsets.all(AppSizes.p30),
+                          child: Column(
+                            spacing: AppSizes.p4,
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                widget.firstText,
+                                style: theme.textTheme.labelMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            Text(
-                              widget.secondText,
-                              style: theme.textTheme.bodyMedium?.copyWith(
-                                color: theme.colorScheme.primary,
+                              Text(
+                                widget.secondText,
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  color: theme.colorScheme.primary,
+                                ),
                               ),
-                            ),
-                            Text(
-                              widget.thirdText,
-                              style: const TextStyle(color: Colors.white70),
-                            ),
-                          ],
+                              Text(
+                                widget.thirdText,
+                                style: const TextStyle(color: Colors.white70),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

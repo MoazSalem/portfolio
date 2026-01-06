@@ -109,17 +109,25 @@ class _NumericalDescriptionWidgetState extends State<NumericalDescriptionWidget>
                                 );
                               }
                             },
-                            child: Text(
-                              "${widget.numericalDescription.value}",
-                              textAlign: TextAlign.center,
-                              style: theme.textTheme.headlineMedium?.copyWith(
-                                fontSize: value,
-                                color:
-                                    _statesController.value.contains(
-                                      WidgetState.hovered,
-                                    )
-                                    ? theme.colorScheme.primary
-                                    : null,
+                            child: GestureDetector(
+                              onTap: () => _statesController.update(
+                                WidgetState.hovered,
+                                !_statesController.value.contains(
+                                  WidgetState.hovered,
+                                ),
+                              ),
+                              child: Text(
+                                "${widget.numericalDescription.value}",
+                                textAlign: TextAlign.center,
+                                style: theme.textTheme.headlineMedium?.copyWith(
+                                  fontSize: value,
+                                  color:
+                                      _statesController.value.contains(
+                                        WidgetState.hovered,
+                                      )
+                                      ? theme.colorScheme.primary
+                                      : null,
+                                ),
                               ),
                             ),
                           );
