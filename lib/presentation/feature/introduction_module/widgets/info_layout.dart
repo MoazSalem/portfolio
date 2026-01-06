@@ -24,20 +24,8 @@ class _InfoLayoutState extends State<InfoLayout>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
-  bool _isAnimationDone = false;
   // bool to switch to vertical layout widgets
   bool isPortrait = false;
-
-  // Define the listener function
-  void _onAnimationCompleted(AnimationStatus status) {
-    if (status == AnimationStatus.completed) {
-      setState(() {
-        _isAnimationDone = true;
-      });
-      // Remove the listener so this never fires again
-      _controller.removeStatusListener(_onAnimationCompleted);
-    }
-  }
 
   @override
   void initState() {
@@ -52,8 +40,6 @@ class _InfoLayoutState extends State<InfoLayout>
       begin: 800,
       end: 0,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
-    // Add a status listener to the controller.
-    _controller.addStatusListener(_onAnimationCompleted);
     _controller.forward();
   }
 
@@ -61,7 +47,6 @@ class _InfoLayoutState extends State<InfoLayout>
   void dispose() {
     // If the controller is still active when the widget is removed,
     // we should still dispose it to prevent memory leaks.
-    _controller.removeStatusListener(_onAnimationCompleted);
     _controller.dispose();
     super.dispose();
   }
@@ -78,53 +63,35 @@ class _InfoLayoutState extends State<InfoLayout>
     // Build the list of widgets first to have the ability to reverse it.
     final List<Widget> widgets = [
       // User avatar
-      if (_isAnimationDone)
-        AvatarWidget(
+      AnimatedBuilder(
+        animation: _animation,
+        child: AvatarWidget(
           isPortrait: isPortrait,
           avatarUrl: widget.introductionData.avatarUrl,
         ),
+        builder: (context, child) {
+          return Transform.translate(
+            offset: Offset(_animation.value, 0),
+            child: child,
+          );
+        },
+      ),
 
-      // animation builder, will be removed after the animation is done
-      if (!_isAnimationDone)
-        AnimatedBuilder(
-          animation: _animation,
-          child: CircleAvatar(
-            radius: isPortrait
-                ? AppSizes.userAvatarRadiusSmall
-                : AppSizes.userAvatarRadiusBig,
-            backgroundImage: NetworkImage(widget.introductionData.avatarUrl),
-          ),
-          builder: (context, child) {
-            return Transform.translate(
-              offset: Offset(_animation.value, 0),
-              child: child,
-            );
-          },
-        ),
-      if (_isAnimationDone)
-        IntroductionTextColumn(
+      AnimatedBuilder(
+        animation: _animation,
+        child: IntroductionTextColumn(
           introductionData: widget.introductionData,
           externalLinks: widget.externalLinks,
           maxWidth: widget.maxWidth,
           isPortrait: isPortrait,
         ),
-      // animation builder, will be removed after the animation is done
-      if (!_isAnimationDone)
-        AnimatedBuilder(
-          animation: _animation,
-          child: IntroductionTextColumn(
-            introductionData: widget.introductionData,
-            externalLinks: widget.externalLinks,
-            maxWidth: widget.maxWidth,
-            isPortrait: isPortrait,
-          ),
-          builder: (context, child) {
-            return Transform.translate(
-              offset: Offset(-_animation.value, 0),
-              child: child,
-            );
-          },
-        ),
+        builder: (context, child) {
+          return Transform.translate(
+            offset: Offset(-_animation.value, 0),
+            child: child,
+          );
+        },
+      ),
     ];
     // for readability
     final orderedWidgets = isPortrait ? widgets : widgets.reversed.toList();

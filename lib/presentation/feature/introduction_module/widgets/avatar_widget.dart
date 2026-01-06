@@ -33,6 +33,12 @@ class _AvatarWidgetState extends State<AvatarWidget>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(AssetImage(widget.avatarUrl), context);
+  }
+
+  @override
   void dispose() {
     _controller.dispose();
     _statesController.dispose();
@@ -42,14 +48,29 @@ class _AvatarWidgetState extends State<AvatarWidget>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final diameter = widget.isPortrait
+        ? AppSizes.userAvatarRadiusSmall * 2
+        : AppSizes.userAvatarRadiusBig * 2;
     return ListenableBuilder(
       listenable: _statesController,
-      child: CircleAvatar(
-        radius: widget.isPortrait
-            ? AppSizes.userAvatarRadiusSmall
-            : AppSizes.userAvatarRadiusBig,
-        backgroundImage: AssetImage(widget.avatarUrl),
-        backgroundColor: theme.colorScheme.primaryContainer,
+      child: ClipOval(
+        child: Image.asset(
+          widget.avatarUrl,
+          width: diameter,
+          height: diameter,
+          fit: BoxFit.cover,
+          frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+            if (wasSynchronouslyLoaded) {
+              return child;
+            }
+            return AnimatedOpacity(
+              opacity: frame == null ? 0 : 1,
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeOut,
+              child: child,
+            );
+          },
+        ),
       ),
       builder: (context, child) {
         return SingleMotionBuilder(
