@@ -123,9 +123,14 @@ const User user = User(
       description:
           "An intuitive medication reminder app that helps users schedule custom pill alerts so they never miss a dose. You can set one-time, daily, or weekly reminders, and the app works offline with persistent notifications. It also supports both English and Arabic, with dark/light themes for different preferences.",
       tags: ["Flutter", "Notifications", "GetX"],
-      clickUrl: "https://github.com/MoazSalem/pills-reminder-flutter",
       assetsLocation: ["assets/images/previews/pills.webp"],
       externalLinks: [
+        ExternalLink(
+          name: "github",
+          iconAssetName: "github",
+          displayName: "Github",
+          url: "https://github.com/MoazSalem/pills-reminder-flutter",
+        ),
         ExternalLink(
           name: "playstore",
           iconAssetName: "playstore",
@@ -141,9 +146,14 @@ const User user = User(
           "A design showcase app that recreates a complex user interface for an AI mental health app (Freud UI Kit). It highlights a visually stunning, feature-rich design with custom animations and shapes, demonstrating a clean, layered layout that adapts well to different screens.",
       tags: ["Flutter", "Figma", "Design", "Complex UI"],
       // imgUrl: "",
-      clickUrl: "https://github.com/MoazSalem/freud-ui-kit-flutter",
       assetsLocation: ["assets/images/previews/freud.webp"],
       externalLinks: [
+        ExternalLink(
+          name: "github",
+          iconAssetName: "github",
+          displayName: "Github",
+          url: "https://github.com/MoazSalem/freud-ui-kit-flutter",
+        ),
         ExternalLink(
           name: "demo",
           displayName: "Live Demo",
@@ -156,25 +166,44 @@ const User user = User(
       description:
           "Otex is a modern Flutter-built e-commerce application designed to showcase a complete shopping experience in a polished and user-friendly way. It was developed as a preview submission for the IT Legend application task and highlights core shopping app features that anyone would find familiar and intuitive.",
       tags: ["Flutter", "Bloc", "Figma", "Clean Architecture"],
-      clickUrl: "https://github.com/MoazSalem/otex-flutter",
       assetsLocation: ["assets/images/previews/otex.webp"],
+      externalLinks: [
+        ExternalLink(
+          name: "github",
+          iconAssetName: "github",
+          displayName: "Github",
+          url: "https://github.com/MoazSalem/otex-flutter",
+        ),
+      ],
     ),
     Project(
       name: "Image Sorter",
       description:
           "A handy Android utility app for fixing image or video files that have wrong date stamps. It automatically finds the original date (from file name or metadata) and updates the file’s timestamps accordingly, ensuring your photo gallery shows the correct dates. The interface is a simple black-and-white Material 3 design for straightforward use.",
       tags: ["Flutter", "Platform Channels", "Android"],
-      clickUrl: "https://github.com/MoazSalem/image-sorter-flutter",
       assetsLocation: ["assets/images/previews/sorter.webp"],
+      externalLinks: [
+        ExternalLink(
+          name: "github",
+          iconAssetName: "github",
+          displayName: "Github",
+          url: "https://github.com/MoazSalem/image-sorter-flutter",
+        ),
+      ],
     ),
     Project(
       name: "FakeStore E-Commerce",
       description:
           "A sample e-commerce app using a dummy store API to simulate an online shopping experience. Users can browse a catalog of products, view details, add items to a cart, and go through a mock checkout with test payment options. The design is responsive so it works smoothly on both mobile devices and web browsers.",
       tags: ["Flutter", "Payment Integration", "Bloc", "Caching"],
-      clickUrl: "https://github.com/MoazSalem/fakestore-e-commerce-flutter",
       assetsLocation: ["assets/images/previews/fakestore.webp"],
       externalLinks: [
+        ExternalLink(
+          name: "github",
+          iconAssetName: "github",
+          displayName: "Github",
+          url: "https://github.com/MoazSalem/fakestore-e-commerce-flutter",
+        ),
         ExternalLink(
           name: "demo",
           displayName: "Live Demo",
@@ -187,9 +216,14 @@ const User user = User(
       description:
           "A responsive web app for discovering movies and TV shows using The Movie Database (TMDB) API. It features a clean, minimal design that looks good on any device and allows quick searching of popular films and series. The interface works smoothly with both touch and mouse controls.",
       tags: ["Flutter", "Api", "Web", "Bloc", "Deep Linking"],
-      clickUrl: "https://github.com/MoazSalem/tmdb-flutter-web",
       assetsLocation: ["assets/images/previews/tmdb.webp"],
       externalLinks: [
+        ExternalLink(
+          name: "github",
+          iconAssetName: "github",
+          displayName: "Github",
+          url: "https://github.com/MoazSalem/tmdb-flutter-web",
+        ),
         ExternalLink(
           name: "demo",
           displayName: "Live Demo",
@@ -202,17 +236,29 @@ const User user = User(
       description:
           "A modern remake of the classic Snake game built with Flutter. It delivers smooth, arcade-style gameplay in a polished mobile interface. The app offers adjustable difficulty levels and game settings so both casual and experienced players can enjoy it, and it even includes an online leaderboard (with offline handling) for competing with friends.",
       tags: ["Flutter", "Game", "Firebase", "Firestore", "Bloc"],
-      clickUrl: "https://github.com/MoazSalem/snake-game-flutter",
       assetsLocation: ["assets/images/previews/snake.webp"],
+      externalLinks: [
+        ExternalLink(
+          name: "github",
+          iconAssetName: "github",
+          displayName: "Github",
+          url: "https://github.com/MoazSalem/snake-game-flutter",
+        ),
+      ],
     ),
     Project(
       name: "Colorful Notes",
       description:
           "A vibrant, modern note-taking app where you can create and organize colorful notes using text or voice. It offers powerful search and multiple view styles to help you manage your ideas, and supports both English and Arabic interfaces.",
       tags: ["Flutter", "Riverpod", "Sqflite", "Voice Recording"],
-      clickUrl: "https://github.com/MoazSalem/colorful-notes-flutter",
       assetsLocation: ["assets/images/previews/colorful.webp"],
       externalLinks: [
+        ExternalLink(
+          name: "github",
+          iconAssetName: "github",
+          displayName: "Github",
+          url: "https://github.com/MoazSalem/colorful-notes-flutter",
+        ),
         ExternalLink(
           name: "playstore",
           iconAssetName: "playstore",
@@ -227,8 +273,15 @@ const User user = User(
       description:
           "ADAS App is a Flutter-built mobile application created as a graduation project that brings advanced driver assistance systems to the user’s smartphone with a smooth and intuitive experience. This project blends practical vehicle interaction with modern, user-friendly UI design based on Material 3 and Samsung One UI principles.",
       tags: ["Flutter", "BLE", "WebSockets", "Encryption"],
-      clickUrl: "https://github.com/e7na/adas_app",
       assetsLocation: ["assets/images/previews/adas.webp"],
+      externalLinks: [
+        ExternalLink(
+          name: "github",
+          iconAssetName: "github",
+          displayName: "Github",
+          url: "https://github.com/e7na/adas_app",
+        ),
+      ],
     ),
   ],
   email: "moaztalaat6@gmail.com",

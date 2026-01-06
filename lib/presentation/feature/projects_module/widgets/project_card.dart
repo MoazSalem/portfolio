@@ -38,8 +38,8 @@ class _ProjectCardState extends State<ProjectCard> {
             _statesController.value.contains(WidgetState.pressed);
         // set the color based on the hover state
         final Color color = _expand
-            ? theme.colorScheme.primaryContainer
-            : Colors.black;
+            ? theme.colorScheme.onPrimaryFixed
+            : theme.colorScheme.surface;
         return SingleMotionBuilder(
           motion: const CupertinoMotion.smooth(),
           builder: (context, value, child) {
@@ -56,15 +56,9 @@ class _ProjectCardState extends State<ProjectCard> {
                     _statesController.update(WidgetState.hovered, false);
                   }
                 },
-                child: InkWell(
-                  onTap: widget.project.clickUrl != null
-                      ? () => web.window.open(widget.project.clickUrl!)
-                      : null,
-                  onTapUp: (details) =>
-                      _statesController.update(WidgetState.pressed, false),
-                  onTapDown: (details) =>
-                      _statesController.update(WidgetState.pressed, true),
-                  borderRadius: BorderRadius.circular(AppSizes.borderRadius),
+                child: GestureDetector(
+                  onTap: () =>
+                      _statesController.update(WidgetState.pressed, !_expand),
                   child: Material(
                     color: theme.colorScheme.surface,
                     borderRadius: BorderRadius.circular(AppSizes.borderRadius),
@@ -114,6 +108,7 @@ class _ProjectCardState extends State<ProjectCard> {
                               colors: [
                                 color.withAlpha(255),
                                 color.withAlpha(200),
+                                color.withAlpha(180),
                                 color.withAlpha(120),
                                 color.withAlpha(0),
                               ],

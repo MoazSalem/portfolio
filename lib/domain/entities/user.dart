@@ -83,7 +83,6 @@ class Project {
   final List<String>? imgsUrl;
   final List<String>? assetsLocation;
   final List<String>? tags;
-  final String? clickUrl;
   final List<ExternalLink>? externalLinks;
 
   const Project({
@@ -92,7 +91,6 @@ class Project {
     this.imgsUrl,
     this.assetsLocation,
     this.tags,
-    this.clickUrl,
     this.externalLinks,
   });
 }
